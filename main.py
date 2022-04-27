@@ -1,7 +1,6 @@
-from tkinter import *
-import tkinter.messagebox
 import math
-
+import tkinter.messagebox
+from tkinter import *
 
 root = Tk()
 root.geometry("650x400+300+300")
@@ -9,6 +8,7 @@ root.iconbitmap(True, "icon.ico")
 root.title("Scientific Calculator")
 
 switch = None
+
 
 # Button on press
 
@@ -276,7 +276,7 @@ def del_clicked():
         pass
     else:
         disp.delete(0, END)
-        disp.insert(0, display[0:pos-1])
+        disp.insert(0, display[0:pos - 1])
 
 
 def conv_clicked():
@@ -318,8 +318,8 @@ def btneq_clicked(*args):
 # Label
 
 
-
-disp = Entry(root, font="Verdana 20", fg="black", bg="#abbab1", bd=0, justify=RIGHT, insertbackground="#abbab1", cursor="arrow")
+disp = Entry(root, font="Verdana 20", fg="black", bg="#abbab1", bd=0, justify=RIGHT, insertbackground="#abbab1",
+             cursor="arrow")
 disp.bind("<Return>", btneq_clicked)
 disp.bind("<Escape>", btnc_clicked)
 disp.bind("<Key-1>", key_event)
@@ -345,22 +345,26 @@ btnrow1.pack(expand=TRUE, fill=BOTH)
 pi_btn = Button(btnrow1, text="π", font="Segoe 18", relief=GROOVE, bd=0, command=pi_clicked, fg="white", bg="#333333")
 pi_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-fact_btn = Button(btnrow1, text=" x! ", font="Segoe 18", relief=GROOVE, bd=0, command=fact_clicked, fg="white", bg="#333333")
+fact_btn = Button(btnrow1, text=" x! ", font="Segoe 18", relief=GROOVE, bd=0, command=fact_clicked, fg="white",
+                  bg="#333333")
 fact_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-sin_btn = Button(btnrow1, text="sin", font="Segoe 18", relief=GROOVE, bd=0, command=sin_clicked, fg="white", bg="#333333")
+sin_btn = Button(btnrow1, text="sin", font="Segoe 18", relief=GROOVE, bd=0, command=sin_clicked, fg="white",
+                 bg="#333333")
 sin_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-cos_btn = Button(btnrow1, text="cos", font="Segoe 18", relief=GROOVE, bd=0, command=cos_clicked, fg="white", bg="#333333")
+cos_btn = Button(btnrow1, text="cos", font="Segoe 18", relief=GROOVE, bd=0, command=cos_clicked, fg="white",
+                 bg="#333333")
 cos_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-tan_btn = Button(btnrow1, text="tan", font="Segoe 18", relief=GROOVE, bd=0, command=tan_clicked, fg="white", bg="#333333")
+tan_btn = Button(btnrow1, text="tan", font="Segoe 18", relief=GROOVE, bd=0, command=tan_clicked, fg="white",
+                 bg="#333333")
 tan_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btn1 = Button(btnrow1, text="1", font="Segoe 23", relief=GROOVE, bd=0, command=btn1_clicked, fg="white", bg="#333333")
 btn1.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-btn2 = Button(btnrow1, text="2", font="Segoe 23", relief=GROOVE, bd=0,  command=btn2_clicked, fg="white", bg="#333333")
+btn2 = Button(btnrow1, text="2", font="Segoe 23", relief=GROOVE, bd=0, command=btn2_clicked, fg="white", bg="#333333")
 btn2.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btn3 = Button(btnrow1, text="3", font="Segoe 23", relief=GROOVE, bd=0, command=btn3_clicked, fg="white", bg="#333333")
@@ -377,16 +381,20 @@ btnrow2.pack(expand=TRUE, fill=BOTH)
 e_btn = Button(btnrow2, text="e", font="Segoe 18", relief=GROOVE, bd=0, command=e_clicked, fg="white", bg="#333333")
 e_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-sqr_btn = Button(btnrow2, text=" √x ", font="Segoe 18", relief=GROOVE, bd=0, command=sqr_clicked, fg="white", bg="#333333")
+sqr_btn = Button(btnrow2, text=" √x ", font="Segoe 18", relief=GROOVE, bd=0, command=sqr_clicked, fg="white",
+                 bg="#333333")
 sqr_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-sinh_btn = Button(btnrow2, text="sin−1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arcsin_clicked, fg="white", bg="#333333")
+sinh_btn = Button(btnrow2, text="sin−1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arcsin_clicked, fg="white",
+                  bg="#333333")
 sinh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-cosh_btn = Button(btnrow2, text="cos-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arccos_clicked, fg="white", bg="#333333")
+cosh_btn = Button(btnrow2, text="cos-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arccos_clicked, fg="white",
+                  bg="#333333")
 cosh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-tanh_btn = Button(btnrow2, text="tan-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arctan_clicked, fg="white", bg="#333333")
+tanh_btn = Button(btnrow2, text="tan-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arctan_clicked, fg="white",
+                  bg="#333333")
 tanh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btn4 = Button(btnrow2, text="4", font="Segoe 23", relief=GROOVE, bd=0, command=btn4_clicked, fg="white", bg="#333333")
@@ -406,19 +414,23 @@ btnm.pack(side=LEFT, expand=TRUE, fill=BOTH)
 btnrow3 = Frame(root)
 btnrow3.pack(expand=TRUE, fill=BOTH)
 
-conv_btn = Button(btnrow3, text="Rad", font="Segoe 12 bold", relief=GROOVE, bd=0, command=conv_clicked, fg="white", bg="#333333")
+conv_btn = Button(btnrow3, text="Rad", font="Segoe 12 bold", relief=GROOVE, bd=0, command=conv_clicked, fg="white",
+                  bg="#333333")
 conv_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-round_btn = Button(btnrow3, text="round", font="Segoe 10 bold", relief=GROOVE, bd=0, command=round_clicked, fg="white", bg="#333333")
+round_btn = Button(btnrow3, text="round", font="Segoe 10 bold", relief=GROOVE, bd=0, command=round_clicked, fg="white",
+                   bg="#333333")
 round_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 ln_btn = Button(btnrow3, text="ln", font="Segoe 18", relief=GROOVE, bd=0, command=ln_clicked, fg="white", bg="#333333")
 ln_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-logarithm_btn = Button(btnrow3, text="log", font="Segoe 17", relief=GROOVE, bd=0, command=logarithm_clicked, fg="white", bg="#333333")
+logarithm_btn = Button(btnrow3, text="log", font="Segoe 17", relief=GROOVE, bd=0, command=logarithm_clicked, fg="white",
+                       bg="#333333")
 logarithm_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-pow_btn = Button(btnrow3, text="x^y", font="Segoe 17", relief=GROOVE, bd=0, command=pow_clicked, fg="white", bg="#333333")
+pow_btn = Button(btnrow3, text="x^y", font="Segoe 17", relief=GROOVE, bd=0, command=pow_clicked, fg="white",
+                 bg="#333333")
 pow_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btn7 = Button(btnrow3, text="7", font="Segoe 23", relief=GROOVE, bd=0, command=btn7_clicked, fg="white", bg="#333333")
@@ -447,7 +459,8 @@ bl_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 br_btn = Button(btnrow4, text=" ) ", font="Segoe 21", relief=GROOVE, bd=0, command=br_clicked, fg="white", bg="#333333")
 br_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-dot_btn = Button(btnrow4, text=" • ", font="Segoe 21", relief=GROOVE, bd=0, command=dot_clicked, fg="white", bg="#333333")
+dot_btn = Button(btnrow4, text=" • ", font="Segoe 21", relief=GROOVE, bd=0, command=dot_clicked, fg="white",
+                 bg="#333333")
 dot_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btnc = Button(btnrow4, text="C", font="Segoe 23", relief=GROOVE, bd=0, command=btnc_clicked, fg="white", bg="#333333")
@@ -464,6 +477,5 @@ btneq.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btnd = Button(btnrow4, text="/", font="Segoe 23", relief=GROOVE, bd=0, command=btnd_clicked, fg="white", bg="#333333")
 btnd.pack(side=LEFT, expand=TRUE, fill=BOTH)
-
 
 root.mainloop()
