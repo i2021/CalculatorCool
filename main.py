@@ -1,6 +1,9 @@
 import math
 import tkinter.messagebox
 from tkinter import *
+import sympy
+import numpy
+import numpy as np
 
 root = Tk()
 root.geometry("650x400+300+300")
@@ -218,20 +221,22 @@ def logarithm_clicked():
 
 def fact_clicked():
     try:
-        ans = float(disp.get())
-        ans = math.factorial(ans)
+        ans = math.factorial(int(disp.get()))
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "Maybe try doing non float factorial?")
 
 
 def sqr_clicked():
     try:
         ans = float(disp.get())
-        ans = math.sqrt(ans)
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+#        ans = math.sqrt(ans)
+#        disp.delete(0, END)
+#        disp.insert(0, str(ans))
+
+        pos = len(disp.get())
+        disp.insert(pos, 'sqrt')
     except Exception:
         tkinter.messagebox.showerror("Value Error", "Check your values and operators")
 
@@ -307,10 +312,21 @@ def mod_clicked():
 def btneq_clicked(*args):
     try:
         ans = disp.get()
+        #        print(ans)
+        #        prefix = ans.rpartition('!')[0]
+        #        prefix = math.factorial(eval(prefix))
+        #        print(prefix)
+        ans = ans.replace('sqrtn', 'x**(1/n)')
+        ans = ans.replace('n', 'x**(1/n)')
         ans = eval(ans)
+
         disp.delete(0, END)
         disp.insert(0, ans)
-
+        switcher = sympy.isprime(ans)
+        if switcher == 1:
+            tkinter.messagebox.showinfo("Prime evaluator", str(ans) + " IS prime")
+        else:
+            tkinter.messagebox.showinfo("Prime evaluator", str(ans) + " is NOT prime")
     except:
         tkinter.messagebox.showerror("Value Error", "Check your values and operators")
 
@@ -318,7 +334,7 @@ def btneq_clicked(*args):
 # Label
 
 
-disp = Entry(root, font="Verdana 20", fg="black", bg="#abbab1", bd=0, justify=RIGHT, insertbackground="#abbab1",
+disp = Entry(root, font="Verdana 20", fg="white", bg="#000000", bd=0, justify=RIGHT, insertbackground="#ffffff",
              cursor="arrow")
 disp.bind("<Return>", btneq_clicked)
 disp.bind("<Escape>", btnc_clicked)
