@@ -309,8 +309,15 @@ def btneq_clicked(*args):
         ans = disp.get()
 
         # no nth root stated, using default (2) square root
-        if "**(1/n)" in ans:
+        while "**(1/n)" in ans:
             ans = ans.replace('**(1/n)', '**(1/2)')
+
+        # adding support with bracket multiplication without multiplication sign
+        while ")(" in ans:
+            ans = ans.replace(')(', ')*(')
+        while "0(" in ans:
+            ans = ans.replace('0(', '0*(')
+
 
         # result display
         print(ans + " final")
