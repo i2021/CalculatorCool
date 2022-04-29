@@ -1,9 +1,8 @@
 import math
 import tkinter.messagebox
 from tkinter import *
+
 import sympy
-import numpy
-import numpy as np
 
 root = Tk()
 root.geometry("650x400+300+300")
@@ -126,7 +125,7 @@ def sin_clicked():
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "sin error")
 
 
 def cos_clicked():
@@ -139,7 +138,7 @@ def cos_clicked():
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "cos error")
 
 
 def tan_clicked():
@@ -152,7 +151,7 @@ def tan_clicked():
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "tan error")
 
 
 def arcsin_clicked():
@@ -165,7 +164,7 @@ def arcsin_clicked():
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "arcsin error")
 
 
 def arccos_clicked():
@@ -178,7 +177,7 @@ def arccos_clicked():
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "arccos error")
 
 
 def arctan_clicked():
@@ -191,7 +190,7 @@ def arctan_clicked():
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "actan error")
 
 
 def pow_clicked():
@@ -206,7 +205,7 @@ def round_clicked():
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "except on round")
 
 
 def logarithm_clicked():
@@ -216,7 +215,7 @@ def logarithm_clicked():
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "except on logarithm")
 
 
 def fact_clicked():
@@ -230,15 +229,10 @@ def fact_clicked():
 
 def sqr_clicked():
     try:
-        ans = float(disp.get())
-#        ans = math.sqrt(ans)
-#        disp.delete(0, END)
-#        disp.insert(0, str(ans))
-
         pos = len(disp.get())
-        disp.insert(pos, 'sqrt')
+        disp.insert(pos, '(x**(1/n)')
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "except on sqr")
 
 
 def dot_clicked():
@@ -301,9 +295,10 @@ def ln_clicked():
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "except on ln")
 
 
+# TODO Modulus broken
 def mod_clicked():
     pos = len(disp.get())
     disp.insert(pos, '%')
@@ -312,23 +307,25 @@ def mod_clicked():
 def btneq_clicked(*args):
     try:
         ans = disp.get()
-        #        print(ans)
-        #        prefix = ans.rpartition('!')[0]
-        #        prefix = math.factorial(eval(prefix))
-        #        print(prefix)
-        ans = ans.replace('sqrtn', 'x**(1/n)')
-        ans = ans.replace('n', 'x**(1/n)')
-        ans = eval(ans)
 
+        # no nth root stated, using default (2) square root
+        if "**(1/n)" in ans:
+            ans = ans.replace('**(1/n)', '**(1/2)')
+
+        # result display
+        print(ans + " final")
+        ans = eval(ans)
         disp.delete(0, END)
         disp.insert(0, ans)
+
+        # prime evaluator
         switcher = sympy.isprime(ans)
         if switcher == 1:
             tkinter.messagebox.showinfo("Prime evaluator", str(ans) + " IS prime")
         else:
             tkinter.messagebox.showinfo("Prime evaluator", str(ans) + " is NOT prime")
     except:
-        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+        tkinter.messagebox.showerror("Value Error", "EQ went wrong somewhere")
 
 
 # Label
