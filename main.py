@@ -146,10 +146,18 @@ def tan_clicked():
     try:
         ans = float(disp.get())
         if switch is True:
-            #TODO WTRF
-            ans = math.tan(ans * math.pi / 180)
-            #ans = (math.sin(math.radians(ans))) / (1 - math.sin(math.radians(ans)))
-            print("rAD")
+            # TODO WTRF
+            listo = [90, 270, 450, 630, 810, 990, 1170, 1350]
+            if abs(ans) in listo:
+                print(abs(ans))
+                ans = "undef"
+                disp.delete(0, END)
+                disp.insert(0, str(ans))
+            else:
+                print(ans)
+                print(abs(ans))
+                ans = round(math.tan(math.radians(ans)), 5)
+                print("rAD")
         else:
             ans = math.tan(ans)
             # radians
