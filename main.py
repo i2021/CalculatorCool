@@ -6,15 +6,15 @@ import numpy
 import sympy
 
 root = Tk()
+# Calculator dimensions
 root.geometry("650x400+300+300")
+# Attaching icon because why not :D
 root.iconbitmap(True, "icon.ico")
+# Gotta come up with a better name bruv
 root.title("Scientific Calculator")
 
+# Initializing the radians - degrees switch
 switch = None
-
-
-# Button on press
-
 
 def btn1_clicked():
     if disp.get() == '0':
@@ -133,12 +133,16 @@ def cos_clicked():
     try:
         ans = float(disp.get())
         if switch is True:
-            ans = 1 - math.sin(math.radians(ans))  #### DEGREE
+            # Using degree setting
+            ans = 1 - math.sin(math.radians(ans))
         else:
+            # Using radians setting
             ans = math.cos(ans)
+        # Displaying answer
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
+        # Catching possible error
         tkinter.messagebox.showerror("Value Error", "cos error")
 
 
@@ -169,115 +173,144 @@ def tan_clicked():
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
+        # Catching possible error
         tkinter.messagebox.showerror("Value Error", "tan error")
 
-
+# arcsin action
 def arcsin_clicked():
     try:
+        # ans as float
         ans = float(disp.get())
         if switch is True:
+            # degrees calculation
             ans = math.degrees(math.asin(ans))
         else:
+            # radians calculation
             ans = math.asin(ans)
+        # Push to display
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
+        # catch exception
         tkinter.messagebox.showerror("Value Error", "arcsin error")
 
-
+# arccos action
 def arccos_clicked():
     try:
+        # Grabbing as float
         ans = float(disp.get())
         if switch is True:
+            # Degrees calculation
             ans = math.degrees(math.acos(ans))
         else:
+            # Calculation in radians
             ans = math.acos(ans)
+        # Push to display
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
+        # Catch exceptions :S
         tkinter.messagebox.showerror("Value Error", "arccos error")
 
-
+# arctangent action
 def arctan_clicked():
     try:
         ans = float(disp.get())
         if switch is True:
+            # Degrees
             ans = math.degrees(math.atan(ans))
         else:
+            # Radians
             ans = math.atan(ans)
+        # Display
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
+        # Catch all the naughty
         tkinter.messagebox.showerror("Value Error", "actan error")
 
-
+# Power of n
 def pow_clicked():
     pos = len(disp.get())
+    # Kinda user friendly
     disp.insert(pos, '**')
 
-
+# Rounding the number action
 def round_clicked():
     try:
+        # Obtaining float
         ans = float(disp.get())
+        # Rounding
         ans = round(ans)
+        # Reset & display
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
+        # Catch exceptions
         tkinter.messagebox.showerror("Value Error", "except on round")
 
-
+# Logarithm action
 def logarithm_clicked():
     try:
         ans = float(disp.get())
+        # Using the log function
         ans = math.log10(ans)
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
         tkinter.messagebox.showerror("Value Error", "except on logarithm")
 
-
+# Factorial action
 def fact_clicked():
     try:
+        # Take factorial of number on display (non float)
         ans = math.factorial(int(disp.get()))
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
+        # User did smth wrong. (Probably used a float as input)
         tkinter.messagebox.showerror("Value Error", "Maybe try doing non float factorial?")
 
-
+# Square root action
 def sqr_clicked():
     try:
         pos = len(disp.get())
+        # User-friendly square root
+        # x - value to root
+        # n - power of root
+        # don't forget to close the bracket after
         disp.insert(pos, '(x**(1/n)')
     except Exception:
+        # Catching exception
         tkinter.messagebox.showerror("Value Error", "except on sqr")
 
-
+# dot action
 def dot_clicked():
     pos = len(disp.get())
     disp.insert(pos, '.')
 
-
+# pi action
 def pi_clicked():
     pos = len(disp.get())
     disp.insert(pos, 'pi')
 
-
+# e- Mathematical constant
 def e_clicked():
     pos = len(disp.get())
     disp.insert(pos, 'e')
 
-
+# Opened bracket
 def bl_clicked():
     pos = len(disp.get())
     disp.insert(pos, '(')
 
-
+# Closed bracket
 def br_clicked():
     pos = len(disp.get())
     disp.insert(pos, ')')
 
 
+# Clear screen & reset
 def del_clicked():
     pos = len(disp.get())
     display = str(disp.get())
@@ -292,12 +325,16 @@ def del_clicked():
         disp.insert(0, display[0:pos - 1])
 
 
+# Radians - Degree switcher
 def conv_clicked():
     global switch
     if switch is None:
+        # Degrees for true
         switch = True
         conv_btn['text'] = "Deg"
     else:
+        # Radians for false
+        # Default
         switch = None
         conv_btn['text'] = "Rad"
 
@@ -318,9 +355,14 @@ def mod_clicked():
     disp.insert(pos, '%')
 
 
+# Equals action
 def btneq_clicked(*args):
     try:
         ans = disp.get()
+
+        # If someone put in a coma instead of a dot, replace the comma w dot & slap them
+        if "," in ans:
+            ans = ans.replace(',', '.')
 
         # no nth root stated, using default (2) square root
         while "**(1/n)" in ans:
@@ -382,8 +424,6 @@ def btneq_clicked(*args):
 
 
 # Label
-
-
 disp = Entry(root, font="Verdana 20", fg="white", bg="#000000", bd=0, justify=RIGHT, insertbackground="#ffffff",
              cursor="arrow")
 disp.bind("<Return>", btneq_clicked)
@@ -408,12 +448,12 @@ disp.pack(expand=TRUE, fill=BOTH)
 btnrow1 = Frame(root, bg="#000000")
 btnrow1.pack(expand=TRUE, fill=BOTH)
 
-pi_btn = Button(btnrow1, text="π", font="Segoe 18", relief=GROOVE, bd=0, command=pi_clicked, fg="white", bg="#333333")
-pi_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+pi_button = Button(btnrow1, text="π", font="Segoe 18", relief=GROOVE, bd=0, command=pi_clicked, fg="white", bg="#333333")
+pi_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-fact_btn = Button(btnrow1, text=" x! ", font="Segoe 18", relief=GROOVE, bd=0, command=fact_clicked, fg="white",
+factorial_button = Button(btnrow1, text=" x! ", font="Segoe 18", relief=GROOVE, bd=0, command=fact_clicked, fg="white",
                   bg="#333333")
-fact_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+factorial_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 sin_btn = Button(btnrow1, text="sin", font="Segoe 18", relief=GROOVE, bd=0, command=sin_clicked, fg="white",
                  bg="#333333")
@@ -544,4 +584,5 @@ btneq.pack(side=LEFT, expand=TRUE, fill=BOTH)
 btnd = Button(btnrow4, text="/", font="Segoe 23", relief=GROOVE, bd=0, command=btnd_clicked, fg="white", bg="#333333")
 btnd.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
+# The loop for calculator calculating calculations for me to calculate less
 root.mainloop()
