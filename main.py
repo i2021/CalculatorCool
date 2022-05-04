@@ -2,6 +2,7 @@ import math
 import tkinter.messagebox
 from tkinter import *
 
+import numpy
 import sympy
 
 root = Tk()
@@ -132,7 +133,7 @@ def cos_clicked():
     try:
         ans = float(disp.get())
         if switch is True:
-            ans = math.cos(math.radians(ans))
+            ans = 1 - math.sin(math.radians(ans))  #### DEGREE
         else:
             ans = math.cos(ans)
         disp.delete(0, END)
@@ -145,9 +146,14 @@ def tan_clicked():
     try:
         ans = float(disp.get())
         if switch is True:
-            ans = math.tan(math.radians(ans))
+            #TODO WTRF
+            ans = math.tan(ans * math.pi / 180)
+            #ans = (math.sin(math.radians(ans))) / (1 - math.sin(math.radians(ans)))
+            print("rAD")
         else:
             ans = math.tan(ans)
+            # radians
+            print("xj")
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
@@ -246,10 +252,8 @@ def pi_clicked():
 
 
 def e_clicked():
-    if disp.get() == '0':
-        disp.delete(0, END)
     pos = len(disp.get())
-    disp.insert(pos, str(math.e))
+    disp.insert(pos, 'e')
 
 
 def bl_clicked():
@@ -333,6 +337,21 @@ def btneq_clicked(*args):
             while piy2 in ans:
                 ans = ans.replace(piy2, str(math.pi) + '*' + str(i))
             i = i + 1
+        while "pi" in ans:
+            ans = ans.replace("pi", str(math.pi))
+
+        # replacing e
+        i = 0
+        while i <= 9:
+            piy = str(i) + "e"
+            piy2 = "e" + str(i)
+            while piy in ans:
+                ans = ans.replace(piy, str(i) + '*' + str(math.e))
+            while piy2 in ans:
+                ans = ans.replace(piy2, str(math.e) + '*' + str(i))
+            i = i + 1
+        while "e" in ans:
+            ans = ans.replace("e", str(math.e))
 
         # result display
         print(ans + " final")
