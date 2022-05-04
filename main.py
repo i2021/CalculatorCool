@@ -2,7 +2,6 @@ import math
 import tkinter.messagebox
 from tkinter import *
 
-import numpy
 import sympy
 
 root = Tk()
@@ -15,6 +14,7 @@ root.title("Scientific Calculator")
 
 # Initializing the radians - degrees switch
 switch = None
+
 
 def btn1_clicked():
     if disp.get() == '0':
@@ -176,6 +176,7 @@ def tan_clicked():
         # Catching possible error
         tkinter.messagebox.showerror("Value Error", "tan error")
 
+
 # arcsin action
 def arcsin_clicked():
     try:
@@ -193,6 +194,7 @@ def arcsin_clicked():
     except Exception:
         # catch exception
         tkinter.messagebox.showerror("Value Error", "arcsin error")
+
 
 # arccos action
 def arccos_clicked():
@@ -212,6 +214,7 @@ def arccos_clicked():
         # Catch exceptions :S
         tkinter.messagebox.showerror("Value Error", "arccos error")
 
+
 # arctangent action
 def arctan_clicked():
     try:
@@ -229,11 +232,13 @@ def arctan_clicked():
         # Catch all the naughty
         tkinter.messagebox.showerror("Value Error", "actan error")
 
+
 # Power of n
 def pow_clicked():
     pos = len(disp.get())
     # Kinda user friendly
     disp.insert(pos, '**')
+
 
 # Rounding the number action
 def round_clicked():
@@ -249,6 +254,7 @@ def round_clicked():
         # Catch exceptions
         tkinter.messagebox.showerror("Value Error", "except on round")
 
+
 # Logarithm action
 def logarithm_clicked():
     try:
@@ -260,6 +266,7 @@ def logarithm_clicked():
     except Exception:
         tkinter.messagebox.showerror("Value Error", "except on logarithm")
 
+
 # Factorial action
 def fact_clicked():
     try:
@@ -270,6 +277,7 @@ def fact_clicked():
     except Exception:
         # User did smth wrong. (Probably used a float as input)
         tkinter.messagebox.showerror("Value Error", "Maybe try doing non float factorial?")
+
 
 # Square root action
 def sqr_clicked():
@@ -284,25 +292,30 @@ def sqr_clicked():
         # Catching exception
         tkinter.messagebox.showerror("Value Error", "except on sqr")
 
+
 # dot action
 def dot_clicked():
     pos = len(disp.get())
     disp.insert(pos, '.')
+
 
 # pi action
 def pi_clicked():
     pos = len(disp.get())
     disp.insert(pos, 'pi')
 
+
 # e- Mathematical constant
 def e_clicked():
     pos = len(disp.get())
     disp.insert(pos, 'e')
 
+
 # Opened bracket
 def bl_clicked():
     pos = len(disp.get())
     disp.insert(pos, '(')
+
 
 # Closed bracket
 def br_clicked():
@@ -448,11 +461,12 @@ disp.pack(expand=TRUE, fill=BOTH)
 btnrow1 = Frame(root, bg="#000000")
 btnrow1.pack(expand=TRUE, fill=BOTH)
 
-pi_button = Button(btnrow1, text="π", font="Segoe 18", relief=GROOVE, bd=0, command=pi_clicked, fg="white", bg="#333333")
+pi_button = Button(btnrow1, text="π", font="Segoe 18", relief=GROOVE, bd=0, command=pi_clicked, fg="white",
+                   bg="#333333")
 pi_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 factorial_button = Button(btnrow1, text=" x! ", font="Segoe 18", relief=GROOVE, bd=0, command=fact_clicked, fg="white",
-                  bg="#333333")
+                          bg="#333333")
 factorial_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 sin_btn = Button(btnrow1, text="sin", font="Segoe 18", relief=GROOVE, bd=0, command=sin_clicked, fg="white",
