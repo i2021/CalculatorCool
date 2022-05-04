@@ -241,10 +241,8 @@ def dot_clicked():
 
 
 def pi_clicked():
-    if disp.get() == '0':
-        disp.delete(0, END)
     pos = len(disp.get())
-    disp.insert(pos, str(math.pi))
+    disp.insert(pos, 'pi')
 
 
 def e_clicked():
@@ -323,6 +321,17 @@ def btneq_clicked(*args):
                 ans = ans.replace(line, str(i) + '*(')
             while line2 in ans:
                 ans = ans.replace(line2, ')*' + str(i))
+            i = i + 1
+
+        # replacing pi
+        i = 0
+        while i <= 9:
+            piy = str(i) + "pi"
+            piy2 = "pi" + str(i)
+            while piy in ans:
+                ans = ans.replace(piy, str(i) + '*' + str(math.pi))
+            while piy2 in ans:
+                ans = ans.replace(piy2, str(math.pi) + '*' + str(i))
             i = i + 1
 
         # result display
