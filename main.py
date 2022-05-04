@@ -146,22 +146,26 @@ def tan_clicked():
     try:
         ans = float(disp.get())
         if switch is True:
-            # TODO WTRF
-            listo = [90, 270, 450, 630, 810, 990, 1170, 1350]
-            if abs(ans) in listo:
-                print(abs(ans))
-                ans = "undef"
-                disp.delete(0, END)
-                disp.insert(0, str(ans))
+            # Using degree setting
+            # Checking if number is a mod of 90 (undef)
+            if abs(ans) % 90 == 0:
+                # Checking if the num is zero
+                if abs(ans) == 0:
+                    # tan(0) = 0
+                    disp.delete(0, END)
+                    disp.insert(0, str(abs(ans)))
+                else:
+                    # Treating undef
+                    ans = "undef"
+                    disp.delete(0, END)
+                    disp.insert(0, str(ans))
             else:
-                print(ans)
-                print(abs(ans))
-                ans = round(math.tan(math.radians(ans)), 5)
-                print("rAD")
+                # Calculating tan in degrees for non zeros or % 90s
+                ans = math.tan(math.radians(ans))
         else:
+            # Using radians setting
             ans = math.tan(ans)
-            # radians
-            print("xj")
+        # Displaying the answer
         disp.delete(0, END)
         disp.insert(0, str(ans))
     except Exception:
