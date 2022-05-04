@@ -315,9 +315,15 @@ def btneq_clicked(*args):
         # adding support with bracket multiplication without multiplication sign
         while ")(" in ans:
             ans = ans.replace(')(', ')*(')
-        while "0(" in ans:
-            ans = ans.replace('0(', '0*(')
-
+        i = 0
+        while i <= 9:
+            line = str(i) + "("
+            line2 = ")" + str(i)
+            while line in ans:
+                ans = ans.replace(line, str(i) + '*(')
+            while line2 in ans:
+                ans = ans.replace(line2, ')*' + str(i))
+            i = i + 1
 
         # result display
         print(ans + " final")
