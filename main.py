@@ -560,16 +560,19 @@ buttonplus.pack(side=LEFT, expand=TRUE, fill=BOTH)
 row2 = Frame(root)
 row2.pack(expand=TRUE, fill=BOTH)
 
-arcsin_button = Button(row2, text="sin−1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arcsin_clicked, fg="white",
-                  bg="#333333")
+arcsin_button = Button(row2, text="sin−1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arcsin_clicked,
+                       fg="white",
+                       bg="#333333")
 arcsin_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-arccos_button = Button(row2, text="cos-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arccos_clicked, fg="white",
-                  bg="#333333")
+arccos_button = Button(row2, text="cos-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arccos_clicked,
+                       fg="white",
+                       bg="#333333")
 arccos_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-arctan_button = Button(row2, text="tan-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arctan_clicked, fg="white",
-                  bg="#333333")
+arctan_button = Button(row2, text="tan-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arctan_clicked,
+                       fg="white",
+                       bg="#333333")
 arctan_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btn4 = Button(row2, text="4", font="Segoe 23", relief=GROOVE, bd=0, command=btn4_clicked, fg="white", bg="#333333")
