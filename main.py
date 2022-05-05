@@ -231,7 +231,7 @@ def arcsin_clicked():
         else:
             # Calculation in radians
             if ans > 1 or ans < -1:
-                # In radians arc cos should give non-real output when below -1 or above 1
+                # In radians arc sin should give non-real output when below -1 or above 1
                 ans = 'Non-real result'
                 disp.delete(0, END)
                 disp.insert(0, str(ans))
