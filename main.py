@@ -197,8 +197,9 @@ def tan_clicked():
                     disp.insert(0, str(abs(ans)))
                 else:
                     # Treating undef
+                    ans = 'undef'
                     disp.delete(0, END)
-                    disp.insert(0, 'undef')
+                    disp.insert(0, str(ans))
             else:
                 # Calculating tan in degrees for non zeros or % 90s
                 ans = math.tan(math.radians(ans))
@@ -239,7 +240,13 @@ def arccos_clicked():
         ans = float(disp.get())
         if switch is True:
             # Degrees calculation
-            ans = math.degrees(math.acos(ans))
+            if ans > 1 or ans < -1:
+                # In degrees arc cos should give undef when below -1 or above 1
+                ans = 'undef'
+                disp.delete(0, END)
+                disp.insert(0, str(ans))
+            else:
+                ans = math.degrees(math.acos(ans))
         else:
             # Calculation in radians
             ans = math.acos(ans)
@@ -297,8 +304,9 @@ def logarithm_clicked():
         ans = float(disp.get())
         # If log10(0) is used it needs to be undef
         if ans == 0:
+            ans = 'undef'
             disp.delete(0, END)
-            disp.insert(0, 'undef')
+            disp.insert(0, str(ans))
         else:
             # Using the log function
             ans = math.log10(ans)
@@ -400,8 +408,9 @@ def ln_clicked():
         # If ln(0) is used it needs to be undef
         if ans == 0:
             # Stetting 'ans' as undef and displaying
+            ans = 'undef'
             disp.delete(0, END)
-            disp.insert(0, 'undef')
+            disp.insert(0, str(ans))
         else:
             # Normal natural log calculation using math library
             ans = math.log(ans)
@@ -532,17 +541,17 @@ buttonplus.pack(side=LEFT, expand=TRUE, fill=BOTH)
 row2 = Frame(root)
 row2.pack(expand=TRUE, fill=BOTH)
 
-sinh_btn = Button(row2, text="sin−1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arcsin_clicked, fg="white",
+arcsin_button = Button(row2, text="sin−1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arcsin_clicked, fg="white",
                   bg="#333333")
-sinh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+arcsin_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-cosh_btn = Button(row2, text="cos-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arccos_clicked, fg="white",
+arccos_button = Button(row2, text="cos-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arccos_clicked, fg="white",
                   bg="#333333")
-cosh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+arccos_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-tanh_btn = Button(row2, text="tan-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arctan_clicked, fg="white",
+arctan_button = Button(row2, text="tan-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arctan_clicked, fg="white",
                   bg="#333333")
-tanh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+arctan_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btn4 = Button(row2, text="4", font="Segoe 23", relief=GROOVE, bd=0, command=btn4_clicked, fg="white", bg="#333333")
 btn4.pack(side=LEFT, expand=TRUE, fill=BOTH)
