@@ -91,7 +91,7 @@ def key_event(*args):
         disp.delete(0, END)
 
 
-def btnp_clicked():
+def buttonplus_clicked():
     pos = len(disp.get())
     disp.insert(pos, '+')
 
@@ -160,9 +160,8 @@ def tan_clicked():
                     disp.insert(0, str(abs(ans)))
                 else:
                     # Treating undef
-                    ans = "undef"
                     disp.delete(0, END)
-                    disp.insert(0, str(ans))
+                    disp.insert(0, 'undef')
             else:
                 # Calculating tan in degrees for non zeros or % 90s
                 ans = math.tan(math.radians(ans))
@@ -259,10 +258,15 @@ def round_clicked():
 def logarithm_clicked():
     try:
         ans = float(disp.get())
-        # Using the log function
-        ans = math.log10(ans)
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+        # If log10(0) is used it needs to be undef
+        if ans == 0:
+            disp.delete(0, END)
+            disp.insert(0, 'undef')
+        else:
+            # Using the log function
+            ans = math.log10(ans)
+            disp.delete(0, END)
+            disp.insert(0, str(ans))
     except Exception:
         tkinter.messagebox.showerror("Value Error", "except on logarithm")
 
@@ -323,7 +327,7 @@ def br_clicked():
     disp.insert(pos, ')')
 
 
-# Clear screen & reset
+# Backspace action
 def del_clicked():
     pos = len(disp.get())
     display = str(disp.get())
@@ -351,18 +355,25 @@ def conv_clicked():
         switch = None
         conv_btn['text'] = "Rad"
 
-
+# Natural log function
 def ln_clicked():
     try:
         ans = float(disp.get())
-        ans = math.log(ans)
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+        # If ln(0) is used it needs to be undef
+        if ans == 0:
+            # Stetting 'ans' as undef and displaying
+            disp.delete(0, END)
+            disp.insert(0, 'undef')
+        else:
+            # Normal natural log calculation using math library
+            ans = math.log(ans)
+            disp.delete(0, END)
+            disp.insert(0, str(ans))
     except Exception:
+        # Catching exception just in case
         tkinter.messagebox.showerror("Value Error", "except on ln")
 
 
-# TODO Modulus broken
 def mod_clicked():
     pos = len(disp.get())
     disp.insert(pos, '%')
@@ -433,6 +444,7 @@ def btneq_clicked(*args):
         else:
             tkinter.messagebox.showinfo("Prime evaluator", str(ans) + " is NOT prime")
     except:
+        # Catch error and display message
         tkinter.messagebox.showerror("Value Error", "EQ went wrong somewhere")
 
 
@@ -457,7 +469,6 @@ disp.focus_set()
 disp.pack(expand=TRUE, fill=BOTH)
 
 # Row 1 Buttons
-
 btnrow1 = Frame(root, bg="#000000")
 btnrow1.pack(expand=TRUE, fill=BOTH)
 
@@ -469,17 +480,17 @@ factorial_button = Button(btnrow1, text=" x! ", font="Segoe 18", relief=GROOVE, 
                           bg="#333333")
 factorial_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-sin_btn = Button(btnrow1, text="sin", font="Segoe 18", relief=GROOVE, bd=0, command=sin_clicked, fg="white",
-                 bg="#333333")
-sin_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+sin_button = Button(btnrow1, text="sin", font="Segoe 18", relief=GROOVE, bd=0, command=sin_clicked, fg="white",
+                    bg="#333333")
+sin_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-cos_btn = Button(btnrow1, text="cos", font="Segoe 18", relief=GROOVE, bd=0, command=cos_clicked, fg="white",
-                 bg="#333333")
-cos_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+cos_button = Button(btnrow1, text="cos", font="Segoe 18", relief=GROOVE, bd=0, command=cos_clicked, fg="white",
+                    bg="#333333")
+cos_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-tan_btn = Button(btnrow1, text="tan", font="Segoe 18", relief=GROOVE, bd=0, command=tan_clicked, fg="white",
-                 bg="#333333")
-tan_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+tan_button = Button(btnrow1, text="tan", font="Segoe 18", relief=GROOVE, bd=0, command=tan_clicked, fg="white",
+                    bg="#333333")
+tan_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btn1 = Button(btnrow1, text="1", font="Segoe 23", relief=GROOVE, bd=0, command=btn1_clicked, fg="white", bg="#333333")
 btn1.pack(side=LEFT, expand=TRUE, fill=BOTH)
@@ -490,47 +501,46 @@ btn2.pack(side=LEFT, expand=TRUE, fill=BOTH)
 btn3 = Button(btnrow1, text="3", font="Segoe 23", relief=GROOVE, bd=0, command=btn3_clicked, fg="white", bg="#333333")
 btn3.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-btnp = Button(btnrow1, text="+", font="Segoe 23", relief=GROOVE, bd=0, command=btnp_clicked, fg="white", bg="#333333")
-btnp.pack(side=LEFT, expand=TRUE, fill=BOTH)
+buttonplus = Button(btnrow1, text="+", font="Segoe 23", relief=GROOVE, bd=0, command=buttonplus_clicked, fg="white",
+                    bg="#333333")
+buttonplus.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 # Row 2 Buttons
+row2 = Frame(root)
+row2.pack(expand=TRUE, fill=BOTH)
 
-btnrow2 = Frame(root)
-btnrow2.pack(expand=TRUE, fill=BOTH)
-
-e_btn = Button(btnrow2, text="e", font="Segoe 18", relief=GROOVE, bd=0, command=e_clicked, fg="white", bg="#333333")
+e_btn = Button(row2, text="e", font="Segoe 18", relief=GROOVE, bd=0, command=e_clicked, fg="white", bg="#333333")
 e_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-sqr_btn = Button(btnrow2, text=" √x ", font="Segoe 18", relief=GROOVE, bd=0, command=sqr_clicked, fg="white",
+sqr_btn = Button(row2, text=" √x ", font="Segoe 18", relief=GROOVE, bd=0, command=sqr_clicked, fg="white",
                  bg="#333333")
 sqr_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-sinh_btn = Button(btnrow2, text="sin−1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arcsin_clicked, fg="white",
+sinh_btn = Button(row2, text="sin−1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arcsin_clicked, fg="white",
                   bg="#333333")
 sinh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-cosh_btn = Button(btnrow2, text="cos-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arccos_clicked, fg="white",
+cosh_btn = Button(row2, text="cos-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arccos_clicked, fg="white",
                   bg="#333333")
 cosh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-tanh_btn = Button(btnrow2, text="tan-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arctan_clicked, fg="white",
+tanh_btn = Button(row2, text="tan-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arctan_clicked, fg="white",
                   bg="#333333")
 tanh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-btn4 = Button(btnrow2, text="4", font="Segoe 23", relief=GROOVE, bd=0, command=btn4_clicked, fg="white", bg="#333333")
+btn4 = Button(row2, text="4", font="Segoe 23", relief=GROOVE, bd=0, command=btn4_clicked, fg="white", bg="#333333")
 btn4.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-btn5 = Button(btnrow2, text="5", font="Segoe 23", relief=GROOVE, bd=0, command=btn5_clicked, fg="white", bg="#333333")
+btn5 = Button(row2, text="5", font="Segoe 23", relief=GROOVE, bd=0, command=btn5_clicked, fg="white", bg="#333333")
 btn5.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-btn6 = Button(btnrow2, text="6", font="Segoe 23", relief=GROOVE, bd=0, command=btn6_clicked, fg="white", bg="#333333")
+btn6 = Button(row2, text="6", font="Segoe 23", relief=GROOVE, bd=0, command=btn6_clicked, fg="white", bg="#333333")
 btn6.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-btnm = Button(btnrow2, text="-", font="Segoe 23", relief=GROOVE, bd=0, command=btnm_clicked, fg="white", bg="#333333")
+btnm = Button(row2, text="-", font="Segoe 23", relief=GROOVE, bd=0, command=btnm_clicked, fg="white", bg="#333333")
 btnm.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 # Row 3 Buttons
-
 btnrow3 = Frame(root)
 btnrow3.pack(expand=TRUE, fill=BOTH)
 
@@ -566,7 +576,6 @@ btnml = Button(btnrow3, text="*", font="Segoe 23", relief=GROOVE, bd=0, command=
 btnml.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 # Row 4 Buttons
-
 btnrow4 = Frame(root)
 btnrow4.pack(expand=TRUE, fill=BOTH)
 
