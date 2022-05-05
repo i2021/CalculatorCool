@@ -412,12 +412,12 @@ def converter():
     if switch is None:
         # Degrees for true
         switch = True
-        conv_btn['text'] = "Deg"
+        conv_btn['text'] = "DEG"
     else:
         # Radians for false
         # Default
         switch = None
-        conv_btn['text'] = "Rad"
+        conv_btn['text'] = "RAD"
 
 
 # Natural log function
@@ -668,7 +668,7 @@ factorial_button = Button(btnrow5, text=" x! ", font="Segoe 18", relief=GROOVE, 
                           bg="#333333")
 factorial_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-conv_btn = Button(btnrow5, text="Rad", font="Segoe 12 bold", relief=GROOVE, bd=0, command=converter, fg="white",
+conv_btn = Button(btnrow5, text="RAD", font="Segoe 11 bold", relief=GROOVE, bd=0, command=converter, fg="white",
                   bg="#333333")
 conv_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
