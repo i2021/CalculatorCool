@@ -131,6 +131,16 @@ def prime_clicked():
         tkinter.messagebox.showerror("Value Error", "prime error")
 
 
+def scientific_clicked():
+    try:
+        # scientific notation converter
+        ans = "{:.2E}".format(float(disp.get()))
+        disp.delete(0, END)
+        disp.insert(0, ans)
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "scientific error")
+
+
 def sin_clicked():
     try:
         ans = float(disp.get())
@@ -624,8 +634,8 @@ prime_button = Button(btnrow5, text="isPrime", font="Segoe 21", relief=GROOVE, b
                       bg="#333333")
 prime_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-# bl_btn = Button(btnrow5, text=" ( ", font="Segoe 21", relief=GROOVE, bd=0, command=bl_clicked, fg="white", bg="#333333")
-# bl_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+scientific_button = Button(btnrow5, text="xEn", font="Segoe 21", relief=GROOVE, bd=0, command=scientific_clicked, fg="white", bg="#333333")
+scientific_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 
 # The loop for calculator calculating calculations for me to calculate less
