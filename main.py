@@ -247,9 +247,16 @@ def arccos_clicked():
                 disp.insert(0, str(ans))
             else:
                 ans = math.degrees(math.acos(ans))
+
         else:
             # Calculation in radians
-            ans = math.acos(ans)
+            if ans > 1 or ans < -1:
+                # In radians arc cos should give non-real output when below -1 or above 1
+                ans = 'Non-real result'
+                disp.delete(0, END)
+                disp.insert(0, str(ans))
+            else:
+                ans = math.acos(ans)
         # Push to display
         disp.delete(0, END)
         disp.insert(0, str(ans))
