@@ -457,6 +457,7 @@ def equals_clicked(*args):
         # no nth root stated, using default (2) square root
         while "**(1/n)" in ans:
             ans = ans.replace('**(1/n)', '**(1/2)')
+            # TODO do not allow negative roots
 
         # adding support with bracket multiplication without multiplication sign
         while ")(" in ans:
