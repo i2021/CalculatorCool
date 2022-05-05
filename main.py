@@ -141,6 +141,18 @@ def scientific_clicked():
         tkinter.messagebox.showerror("Value Error", "scientific error")
 
 
+def percentage():
+    try:
+        # percentage converter
+        ans = float(disp.get())
+        # %.2 stands for "print a float with 2 decimal places", so %.4f would print 33.3333
+        ans = "{:.2%}".format(ans)
+        disp.delete(0, END)
+        disp.insert(0, ans)
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "percentage error")
+
+
 def sin_clicked():
     try:
         ans = float(disp.get())
@@ -265,18 +277,18 @@ def pow_clicked():
 
 
 # Rounding the number action
-def round_clicked():
-    try:
-        # Obtaining float
-        ans = float(disp.get())
-        # Rounding
-        ans = round(ans)
-        # Reset & display
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
-    except Exception:
-        # Catch exceptions
-        tkinter.messagebox.showerror("Value Error", "except on round")
+# def round_clicked():
+#    try:
+#        # Obtaining float
+#        ans = float(disp.get())
+#        # Rounding
+#        ans = round(ans)
+#        # Reset & display
+#        disp.delete(0, END)
+#        disp.insert(0, str(ans))
+#    except Exception:
+#        # Catch exceptions
+#        tkinter.messagebox.showerror("Value Error", "except on round")
 
 
 # Logarithm action
@@ -368,7 +380,7 @@ def del_clicked():
 
 
 # Radians - Degree switcher
-def conv_clicked():
+def converter():
     global switch
     if switch is None:
         # Degrees for true
@@ -406,7 +418,7 @@ def mod_clicked():
 
 
 # Equals action
-def btneq_clicked(*args):
+def equals_clicked(*args):
     try:
         ans = disp.get()
 
@@ -470,7 +482,7 @@ def btneq_clicked(*args):
 # Label
 disp = Entry(root, font="Verdana 20", fg="white", bg="#000000", bd=0, justify=RIGHT, insertbackground="#ffffff",
              cursor="arrow")
-disp.bind("<Return>", btneq_clicked)
+disp.bind("<Return>", equals_clicked)
 disp.bind("<Escape>", btnc_clicked)
 disp.bind("<Key-1>", key_event)
 disp.bind("<Key-2>", key_event)
@@ -490,14 +502,6 @@ disp.pack(expand=TRUE, fill=BOTH)
 # Row 1 Buttons
 btnrow1 = Frame(root, bg="#000000")
 btnrow1.pack(expand=TRUE, fill=BOTH)
-
-pi_button = Button(btnrow1, text="π", font="Segoe 18", relief=GROOVE, bd=0, command=pi_clicked, fg="white",
-                   bg="#333333")
-pi_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
-
-factorial_button = Button(btnrow1, text=" x! ", font="Segoe 18", relief=GROOVE, bd=0, command=fact_clicked, fg="white",
-                          bg="#333333")
-factorial_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 sin_button = Button(btnrow1, text="sin", font="Segoe 18", relief=GROOVE, bd=0, command=sin_clicked, fg="white",
                     bg="#333333")
@@ -528,13 +532,6 @@ buttonplus.pack(side=LEFT, expand=TRUE, fill=BOTH)
 row2 = Frame(root)
 row2.pack(expand=TRUE, fill=BOTH)
 
-e_btn = Button(row2, text="e", font="Segoe 18", relief=GROOVE, bd=0, command=e_clicked, fg="white", bg="#333333")
-e_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
-
-sqr_btn = Button(row2, text=" √x ", font="Segoe 18", relief=GROOVE, bd=0, command=sqr_clicked, fg="white",
-                 bg="#333333")
-sqr_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
-
 sinh_btn = Button(row2, text="sin−1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arcsin_clicked, fg="white",
                   bg="#333333")
 sinh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
@@ -562,14 +559,6 @@ btnm.pack(side=LEFT, expand=TRUE, fill=BOTH)
 # Row 3 Buttons
 btnrow3 = Frame(root)
 btnrow3.pack(expand=TRUE, fill=BOTH)
-
-conv_btn = Button(btnrow3, text="Rad", font="Segoe 12 bold", relief=GROOVE, bd=0, command=conv_clicked, fg="white",
-                  bg="#333333")
-conv_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
-
-round_btn = Button(btnrow3, text="round", font="Segoe 10 bold", relief=GROOVE, bd=0, command=round_clicked, fg="white",
-                   bg="#333333")
-round_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 ln_btn = Button(btnrow3, text="ln", font="Segoe 18", relief=GROOVE, bd=0, command=ln_clicked, fg="white", bg="#333333")
 ln_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
@@ -611,17 +600,11 @@ dot_btn = Button(btnrow4, text=" • ", font="Segoe 21", relief=GROOVE, bd=0, co
                  bg="#333333")
 dot_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-btnc = Button(btnrow4, text="C", font="Segoe 23", relief=GROOVE, bd=0, command=btnc_clicked, fg="white", bg="#333333")
-btnc.pack(side=LEFT, expand=TRUE, fill=BOTH)
-
-del_btn = Button(btnrow4, text="⌫", font="Segoe 20", relief=GROOVE, bd=0, command=del_clicked, fg="white", bg="#333333")
-del_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
-
 btn0 = Button(btnrow4, text="0", font="Segoe 23", relief=GROOVE, bd=0, command=btn0_clicked, fg="white", bg="#333333")
 btn0.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-btneq = Button(btnrow4, text="=", font="Segoe 23", relief=GROOVE, bd=0, command=btneq_clicked, fg="white", bg="#333333")
-btneq.pack(side=LEFT, expand=TRUE, fill=BOTH)
+del_btn = Button(btnrow4, text="⌫", font="Segoe 20", relief=GROOVE, bd=0, command=del_clicked, fg="white", bg="#333333")
+del_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btnd = Button(btnrow4, text="/", font="Segoe 23", relief=GROOVE, bd=0, command=btnd_clicked, fg="white", bg="#333333")
 btnd.pack(side=LEFT, expand=TRUE, fill=BOTH)
@@ -630,13 +613,45 @@ btnd.pack(side=LEFT, expand=TRUE, fill=BOTH)
 btnrow5 = Frame(root)
 btnrow5.pack(expand=TRUE, fill=BOTH)
 
-prime_button = Button(btnrow5, text="isPrime", font="Segoe 21", relief=GROOVE, bd=0, command=prime_clicked, fg="white",
+pi_button = Button(btnrow5, text="π", font="Segoe 18", relief=GROOVE, bd=0, command=pi_clicked, fg="white",
+                   bg="#333333")
+pi_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
+
+e_btn = Button(btnrow5, text="e", font="Segoe 18", relief=GROOVE, bd=0, command=e_clicked, fg="white", bg="#333333")
+e_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+
+scientific_button = Button(btnrow5, text="EE", font="Segoe 10", relief=GROOVE, bd=0, command=scientific_clicked,
+                           fg="white", bg="#333333")
+scientific_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
+
+prime_button = Button(btnrow5, text="Np", font="Segoe 14", relief=GROOVE, bd=0, command=prime_clicked, fg="white",
                       bg="#333333")
 prime_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-scientific_button = Button(btnrow5, text="xEn", font="Segoe 21", relief=GROOVE, bd=0, command=scientific_clicked, fg="white", bg="#333333")
-scientific_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
+percentage_button = Button(btnrow5, text="x%", font="Segoe 18", relief=GROOVE, bd=0, command=percentage, fg="white",
+                           bg="#333333")
+percentage_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
+sqr_btn = Button(btnrow5, text=" √x ", font="Segoe 18", relief=GROOVE, bd=0, command=sqr_clicked, fg="white",
+                 bg="#333333")
+sqr_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
+factorial_button = Button(btnrow5, text=" x! ", font="Segoe 18", relief=GROOVE, bd=0, command=fact_clicked, fg="white",
+                          bg="#333333")
+factorial_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
+
+conv_btn = Button(btnrow5, text="Rad", font="Segoe 12 bold", relief=GROOVE, bd=0, command=converter, fg="white",
+                  bg="#333333")
+conv_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+
+# Row 6 Buttons
+btnrow6 = Frame(root)
+btnrow6.pack(expand=TRUE, fill=BOTH)
+btnc = Button(btnrow6, text="C", font="Segoe 23", relief=GROOVE, bd=0, command=btnc_clicked, fg="white", bg="#333333")
+btnc.pack(side=LEFT, expand=TRUE, fill=BOTH)
+
+btneq = Button(btnrow6, text="=", font="Segoe 23", relief=GROOVE, bd=0, command=equals_clicked, fg="white",
+               bg="#333333")
+btneq.pack(side=LEFT, expand=TRUE, fill=BOTH)
 # The loop for calculator calculating calculations for me to calculate less
 root.mainloop()
