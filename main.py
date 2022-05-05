@@ -116,6 +116,21 @@ def btnc_clicked(*args):
     disp.insert(0, '0')
 
 
+def prime_clicked():
+    try:
+        ans = float(disp.get())
+        # prime evaluator
+        switcher = sympy.isprime(ans)
+        if switcher == 1:
+            disp.delete(0, END)
+            disp.insert(0, 'isPrime')
+        else:
+            disp.delete(0, END)
+            disp.insert(0, 'isNotPrime')
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "prime error")
+
+
 def sin_clicked():
     try:
         ans = float(disp.get())
@@ -355,6 +370,7 @@ def conv_clicked():
         switch = None
         conv_btn['text'] = "Rad"
 
+
 # Natural log function
 def ln_clicked():
     try:
@@ -436,13 +452,6 @@ def btneq_clicked(*args):
         ans = eval(ans)
         disp.delete(0, END)
         disp.insert(0, ans)
-
-        # prime evaluator
-        switcher = sympy.isprime(ans)
-        if switcher == 1:
-            tkinter.messagebox.showinfo("Prime evaluator", str(ans) + " IS prime")
-        else:
-            tkinter.messagebox.showinfo("Prime evaluator", str(ans) + " is NOT prime")
     except:
         # Catch error and display message
         tkinter.messagebox.showerror("Value Error", "EQ went wrong somewhere")
@@ -606,6 +615,18 @@ btneq.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 btnd = Button(btnrow4, text="/", font="Segoe 23", relief=GROOVE, bd=0, command=btnd_clicked, fg="white", bg="#333333")
 btnd.pack(side=LEFT, expand=TRUE, fill=BOTH)
+
+# Row 5 Buttons
+btnrow5 = Frame(root)
+btnrow5.pack(expand=TRUE, fill=BOTH)
+
+prime_button = Button(btnrow5, text="isPrime", font="Segoe 21", relief=GROOVE, bd=0, command=prime_clicked, fg="white",
+                      bg="#333333")
+prime_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
+
+# bl_btn = Button(btnrow5, text=" ( ", font="Segoe 21", relief=GROOVE, bd=0, command=bl_clicked, fg="white", bg="#333333")
+# bl_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+
 
 # The loop for calculator calculating calculations for me to calculate less
 root.mainloop()
