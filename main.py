@@ -1,5 +1,4 @@
 import math
-import re
 import tkinter.messagebox
 from tkinter import *
 
@@ -557,7 +556,7 @@ row1 = Frame(root, bg="#3b3838")
 row1.pack(expand=TRUE, fill=BOTH)
 
 converter_button = Button(row1, text="RAD", font="Segoe 11", relief=GROOVE, bd=0, command=converter, fg="#ffffff",
-                  bg="#0f0f0f")
+                          bg="#0f0f0f")
 sin_button = Button(row1, text="sin", font="Segoe 10", relief=GROOVE, bd=0, command=sin, fg="#ffffff",
                     bg="#0f0f0f")
 cos_button = Button(row1, text="cos", font="Segoe 10", relief=GROOVE, bd=0, command=cos, fg="#ffffff",
@@ -571,7 +570,6 @@ sin_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 cos_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 tan_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 backspace_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
-
 
 # Row 2 buttons (%, arcsin, arccos, arctan, sci)
 row2 = Frame(root)
@@ -617,22 +615,20 @@ absolute_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 prime_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 modulo_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-
 # Row 4 Buttons ( n√x, (, ), n!, ÷)
 row4 = Frame(root)
 row4.pack(expand=TRUE, fill=BOTH)
 
 root_button = Button(row4, text="n√x", font="Segoe 13", relief=GROOVE, bd=0, command=root_c, fg="#ffffff",
-                 bg="#0f0f0f")
+                     bg="#0f0f0f")
 bopen_button = Button(row4, text="(", font="Segoe 16", relief=GROOVE, bd=0, command=bopen, fg="#ffffff",
-                bg="#0f0f0f")
+                      bg="#0f0f0f")
 bclosed_button = Button(row4, text=")", font="Segoe 16", relief=GROOVE, bd=0, command=bclosed, fg="#ffffff",
-                bg="#0f0f0f")
+                        bg="#0f0f0f")
 factorial_button = Button(row4, text="n!", font="Segoe 15", relief=GROOVE, bd=0, command=factorial,
                           fg="#ffffff",
                           bg="#0f0f0f")
 divide_button = Button(row4, text="÷", font="Segoe 18", relief=GROOVE, bd=0, command=divide, fg="#ffffff", bg="#0f0f0f")
-
 
 root_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 bopen_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
@@ -640,19 +636,18 @@ bclosed_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 factorial_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 divide_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-
 # Row 5 Buttons ( xⁿ, 7, 8, 9, ×)
 row5 = Frame(root)
 row5.pack(expand=TRUE, fill=BOTH)
 
 power_button = Button(row5, text="xⁿ", font="Segoe 19", relief=GROOVE, bd=0, command=power, fg="#ffffff",
-                 bg="#0f0f0f")
+                      bg="#0f0f0f")
 button_7 = Button(row5, text="7", font="Segoe 19", relief=GROOVE, bd=0, command=clicked_7, fg="#ffffff", bg="#0a0a0a")
 button_8 = Button(row5, text="8", font="Segoe 18", relief=GROOVE, bd=0, command=clicked_7, fg="#ffffff", bg="#0a0a0a")
 button_9 = Button(row5, text="9", font="Segoe 19", relief=GROOVE, bd=0, command=clicked_9, fg="#ffffff", bg="#0a0a0a")
 
 multiply_button = Button(row5, text="×", font="Segoe 19", relief=GROOVE, bd=0, command=multiply, fg="#ffffff",
-               bg="#0f0f0f")
+                         bg="#0f0f0f")
 
 power_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 button_7.pack(side=LEFT, expand=TRUE, fill=BOTH)
@@ -660,17 +655,16 @@ button_8.pack(side=LEFT, expand=TRUE, fill=BOTH)
 button_9.pack(side=LEFT, expand=TRUE, fill=BOTH)
 multiply_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-
 # Row 6 Buttons ( 10^x, 4, 5, 6, −)
 row6 = Frame(root)
 row6.pack(expand=TRUE, fill=BOTH)
 
-p_10x_button = Button(row6, text="10^x", font="Segoe 11", relief=GROOVE, bd=0, command=p_10x, fg="#ffffff", bg="#0f0f0f")
+p_10x_button = Button(row6, text="10^x", font="Segoe 11", relief=GROOVE, bd=0, command=p_10x, fg="#ffffff",
+                      bg="#0f0f0f")
 button_4 = Button(row6, text="4", font="Segoe 19", relief=GROOVE, bd=0, command=clicked_4, fg="#ffffff", bg="#0a0a0a")
 button_5 = Button(row6, text="5", font="Segoe 18", relief=GROOVE, bd=0, command=clicked_5, fg="#ffffff", bg="#0a0a0a")
 button_6 = Button(row6, text="6", font="Segoe 17", relief=GROOVE, bd=0, command=clicked_6, fg="#ffffff", bg="#0a0a0a")
 minus_button = Button(row6, text="-", font="Segoe 22", relief=GROOVE, bd=0, command=minus, fg="#ffffff", bg="#0f0f0f")
-
 
 p_10x_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 button_4.pack(side=LEFT, expand=TRUE, fill=BOTH)
@@ -678,45 +672,42 @@ button_5.pack(side=LEFT, expand=TRUE, fill=BOTH)
 button_6.pack(side=LEFT, expand=TRUE, fill=BOTH)
 minus_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-
 # Row 7 Buttons (log(), 1, 2, 3, +)
 row7 = Frame(root)
 row7.pack(expand=TRUE, fill=BOTH)
 
 logarithm_button = Button(row7, text="log", font="Segoe 14", relief=GROOVE, bd=0, command=logarithm,
-                       fg="#ffffff",
-                       bg="#0f0f0f")
+                          fg="#ffffff",
+                          bg="#0f0f0f")
 button_1 = Button(row7, text="1", font="Segoe 18", relief=GROOVE, bd=0, command=clicked_1, fg="#ffffff", bg="#0a0a0a")
 button_2 = Button(row7, text="2", font="Segoe 19", relief=GROOVE, bd=0, command=clicked_2, fg="#ffffff", bg="#0a0a0a")
 button_3 = Button(row7, text="3", font="Segoe 19", relief=GROOVE, bd=0, command=clicked_3, fg="#ffffff", bg="#0a0a0a")
 plus_button = Button(row7, text="+", font="Segoe 19", relief=GROOVE, bd=0, command=plus, fg="#ffffff",
-                    bg="#0f0f0f")
+                     bg="#0f0f0f")
 logarithm_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 button_1.pack(side=LEFT, expand=TRUE, fill=BOTH)
 button_2.pack(side=LEFT, expand=TRUE, fill=BOTH)
 button_3.pack(side=LEFT, expand=TRUE, fill=BOTH)
 plus_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
-
 # Row 8 Buttons (ln(), •, 0, C, =)
 row8 = Frame(root)
 row8.pack(expand=TRUE, fill=BOTH)
 
 ln_button = Button(row8, text="ln", font="Segoe 18", relief=GROOVE, bd=0, command=ln, fg="#ffffff",
-                bg="#0f0f0f")
+                   bg="#0f0f0f")
 dot_button = Button(row8, text="•", font="Segoe 18", relief=GROOVE, bd=0, command=dot, fg="#ffffff",
-                 bg="#0a0a0a")
+                    bg="#0a0a0a")
 button_0 = Button(row8, text="0", font="Segoe 18", relief=GROOVE, bd=0, command=clicked_0, fg="#ffffff", bg="#0a0a0a")
 c_button = Button(row8, text="C", font="Segoe 18", relief=GROOVE, bd=0, command=c, fg="#ffffff", bg="#0a0a0a")
 equals_button = Button(row8, text="=", font="Segoe 18", relief=GROOVE, bd=2, command=equals, fg="#ffffff",
-               bg="#7a470c")
+                       bg="#7a470c")
 
 ln_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 dot_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 button_0.pack(side=LEFT, expand=TRUE, fill=BOTH)
 c_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
 equals_button.pack(side=LEFT, expand=TRUE, fill=BOTH)
-
 
 # The loop for calculator calculating calculations for me to calculate less
 root.mainloop()
