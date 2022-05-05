@@ -97,6 +97,8 @@ def plus():
 
 
 def minus():
+    if disp.get() == '0':
+        disp.delete(0, END)
     pos = len(disp.get())
     disp.insert(pos, '-')
 
@@ -112,9 +114,9 @@ def divide():
 
 
 def c(*args):
-    ans = '0'
     disp.delete(0, END)
-    disp.insert(0, str(ans))
+    pos = len(disp.get())
+    disp.insert(pos, '0')
 
 
 def prime():
@@ -233,9 +235,7 @@ def arcsin():
             # Calculation in radians
             if ans > 1 or ans < -1:
                 # In radians arc sin should give non-real output when below -1 or above 1
-                ans = 'Non-real result'
-                disp.delete(0, END)
-                disp.insert(0, str(ans))
+                tkinter.messagebox.showinfo("Info", "Non-real result")
             else:
                 ans = math.asin(ans)
         # Push to display
@@ -265,9 +265,7 @@ def arccos():
             # Calculation in radians
             if ans > 1 or ans < -1:
                 # In radians arc cos should give non-real output when below -1 or above 1
-                ans = 'Non-real result'
-                disp.delete(0, END)
-                disp.insert(0, str(ans))
+                tkinter.messagebox.showinfo("Info", "Non-real result")
             else:
                 ans = math.acos(ans)
         # Push to display
@@ -301,21 +299,6 @@ def power():
     pos = len(disp.get())
     # Kinda user friendly
     disp.insert(pos, '**')
-
-
-# Rounding the number action
-# def round_clicked():
-#    try:
-#        # Obtaining float
-#        ans = float(disp.get())
-#        # Rounding
-#        ans = round(ans)
-#        # Reset & display
-#        disp.delete(0, END)
-#        disp.insert(0, str(ans))
-#    except Exception:
-#        # Catch exceptions
-#        tkinter.messagebox.showerror("Value Error", "except on round")
 
 
 # Logarithm action
@@ -546,7 +529,7 @@ disp.bind("<Key-8>", key_event)
 disp.bind("<Key-9>", key_event)
 disp.bind("<Key-0>", key_event)
 disp.bind("<Key-.>", key_event)
-disp.bind("<Key-c>", c)
+disp.bind("<Key-->", key_event)
 disp.insert(0, '0')
 disp.focus_set()
 disp.pack(expand=TRUE, fill=BOTH)
@@ -577,7 +560,7 @@ row2.pack(expand=TRUE, fill=BOTH)
 
 percentage_button = Button(row2, text=" %", font="Segoe 18", relief=GROOVE, bd=0, command=percentage, fg="#ffffff",
                            bg="#0f0f0f")
-arcsin_button = Button(row2, text=" sin−1 ", font="Segoe 8", relief=GROOVE, bd=0, command=arcsin,
+arcsin_button = Button(row2, text=" sin-1 ", font="Segoe 8", relief=GROOVE, bd=0, command=arcsin,
                        fg="#ffffff",
                        bg="#0f0f0f")
 arccos_button = Button(row2, text=" cos-1 ", font="Segoe 8", relief=GROOVE, bd=0, command=arccos,
