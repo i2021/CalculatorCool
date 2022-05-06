@@ -119,21 +119,29 @@ def c(*args):
 
 def prime():
     try:
-        ans = int(disp.get())
-        # If given number is greater than 1
-        if ans > 1:
-            # Iterate from 2 to n / 2
-            for i in range(2, int(ans / 2) + 1):
-                # If num is divisible by any number between
-                # 2 and n / 2, it is not prime
-                if (ans % i) == 0:
-                    tkinter.messagebox.showinfo("Prime evaluator", "Number is NOT prime")
-                    break
+        ans = float(disp.get())
+        num = int(ans)
+        # Doing this avoids 3.0 throwing an error despite being prime
+        if ans == num:
+            # If given number is greater than 1
+            if num > 1:
+                # Iterate from 2 to n / 2
+                for i in range(2, int(num / 2) + 1):
+                    # If num is divisible by any number between
+                    # 2 and n / 2, it is not prime
+                    if (num % i) == 0:
+                        tkinter.messagebox.showinfo("Prime evaluator", "Number is NOT prime")
+                        break
+                else:
+                    tkinter.messagebox.showinfo("Prime evaluator", "Number IS prime")
             else:
-                tkinter.messagebox.showinfo("Prime evaluator", "Number IS prime")
+                # Negative numbers are not prime
+                tkinter.messagebox.showinfo("Prime evaluator", "Number is NOT prime")
         else:
-            tkinter.messagebox.showinfo("Prime evaluator", "Number is NOT prime")
+            # Decimals are not prime unless they are == int
+            tkinter.messagebox.showinfo("Value Error", "Number is NOT prime")
     except Exception:
+        # Catching errors & displaying message
         tkinter.messagebox.showerror("Value Error", "Prime Error")
 
 
