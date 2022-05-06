@@ -134,7 +134,7 @@ def prime():
         else:
             tkinter.messagebox.showinfo("Prime evaluator", "Number is NOT prime")
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "prime error")
+        tkinter.messagebox.showerror("Value Error", "Prime Error")
 
 
 def scientific():
@@ -143,7 +143,7 @@ def scientific():
         ans = "{:.2E}".format(float(disp.get()))
         update_display(ans)
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "scientific error")
+        tkinter.messagebox.showerror("Value Error", "Scientific conversion Error")
 
 
 def update_display(ans):
@@ -192,7 +192,7 @@ def cos():
         update_display(str(ans))
     except Exception:
         # Catching possible error
-        tkinter.messagebox.showerror("Value Error", "cos error")
+        tkinter.messagebox.showerror("Value Error", "Cos Error")
 
 
 def tan():
@@ -240,14 +240,14 @@ def arcsin():
             # Calculation in radians
             if ans > 1 or ans < -1:
                 # In radians arc sin should give non-real output when below -1 or above 1
-                tkinter.messagebox.showinfo("Info", "Non-real result")
+                tkinter.messagebox.showwarning("Info", "Non-real result")
             else:
                 ans = math.asin(ans)
         # Push to display
         update_display(str(ans))
     except Exception:
         # catch exception
-        tkinter.messagebox.showerror("Value Error", "arcsin error")
+        tkinter.messagebox.showerror("Value Error", "Arcsine Error")
 
 
 # arccos action
@@ -268,14 +268,14 @@ def arccos():
             # Calculation in radians
             if ans > 1 or ans < -1:
                 # In radians arc cos should give non-real output when below -1 or above 1
-                tkinter.messagebox.showinfo("Info", "Non-real result")
+                tkinter.messagebox.showwarning("Info", "Non-real result")
             else:
                 ans = math.acos(ans)
         # Push to display
         update_display(str(ans))
     except Exception:
         # Catch exceptions :S
-        tkinter.messagebox.showerror("Value Error", "arccos error")
+        tkinter.messagebox.showerror("Value Error", "Arcosine Error")
 
 
 # arctangent action
@@ -292,7 +292,7 @@ def arctan():
         update_display(str(ans))
     except Exception:
         # Catch all the naughty
-        tkinter.messagebox.showerror("Value Error", "actan error")
+        tkinter.messagebox.showerror("Value Error", "Arctan Error")
 
 
 # Power of n
@@ -315,7 +315,7 @@ def logarithm():
             ans = math.log10(ans)
             update_display(str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "except on logarithm")
+        tkinter.messagebox.showerror("Value Error", "Logarithm Error")
 
 
 # Factorial action
@@ -336,7 +336,7 @@ def absolute():
         ans = abs(float(disp.get()))
         update_display(str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "absolute except")
+        tkinter.messagebox.showerror("Value Error", "Absolute Eoor")
 
 
 # 10^x action
@@ -346,7 +346,7 @@ def p_10x():
         disp.insert(pos, '*(10**')
     except Exception:
         # Catching exception
-        tkinter.messagebox.showerror("Value Error", "except on p_10x")
+        tkinter.messagebox.showerror("Value Error", "p_10x Error")
 
 
 # Square root action
@@ -360,7 +360,7 @@ def root_c():
         disp.insert(pos, '(x**(1/n)')
     except Exception:
         # Catching exception
-        tkinter.messagebox.showerror("Value Error", "except on sqr")
+        tkinter.messagebox.showerror("Value Error", "Root function error")
 
 
 # dot action
@@ -444,7 +444,7 @@ def ln():
             update_display(str(ans))
     except Exception:
         # Catching exception just in case
-        tkinter.messagebox.showerror("Value Error", "except on ln")
+        tkinter.messagebox.showerror("Value Error", "Natural logarithm Error")
 
 
 def modulo():
