@@ -63,7 +63,7 @@ def clicked_7():
     disp.insert(pos, '7')
 
 
-def clicked_7():
+def clicked_8():
     if disp.get() == '0':
         disp.delete(0, END)
     pos = len(disp.get())
@@ -141,10 +141,16 @@ def scientific():
     try:
         # scientific notation converter
         ans = "{:.2E}".format(float(disp.get()))
-        disp.delete(0, END)
-        disp.insert(0, ans)
+        update_display(ans)
     except Exception:
         tkinter.messagebox.showerror("Value Error", "scientific error")
+
+
+def update_display(ans):
+    # Clear display
+    disp.delete(0, END)
+    # Insert answer
+    disp.insert(0, ans)
 
 
 def percentage():
@@ -153,23 +159,24 @@ def percentage():
         ans = float(disp.get())
         # %.2 stands for "print a float with 2 decimal places", so %.4f would print 33.3333
         ans = "{:.2%}".format(ans)
-        disp.delete(0, END)
-        disp.insert(0, ans)
+        update_display(str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "percentage error")
+        tkinter.messagebox.showerror("Value Error", "Percentage Error")
 
 
 def sin():
     try:
         ans = float(disp.get())
         if switch is True:
+            # Using degree setting
             ans = math.sin(math.radians(ans))
         else:
+            # Using radians
             ans = math.sin(ans)
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+        update_display(str(ans))
     except Exception:
-        tkinter.messagebox.showerror("Value Error", "sin error")
+        # Catching exception on sin
+        tkinter.messagebox.showerror("Value Error", "Sin Error")
 
 
 def cos():
@@ -182,8 +189,7 @@ def cos():
             # Using radians setting
             ans = math.cos(ans)
         # Displaying answer
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+        update_display(str(ans))
     except Exception:
         # Catching possible error
         tkinter.messagebox.showerror("Value Error", "cos error")
@@ -199,13 +205,11 @@ def tan():
                 # Checking if the num is zero
                 if abs(ans) == 0:
                     # tan(0) = 0
-                    disp.delete(0, END)
-                    disp.insert(0, str(abs(ans)))
+                    update_display(str(abs(ans)))
                 else:
                     # Treating undef
                     ans = 'undef'
-                    disp.delete(0, END)
-                    disp.insert(0, str(ans))
+                    update_display(str(ans))
             else:
                 # Calculating tan in degrees for non zeros or % 90s
                 ans = math.tan(math.radians(ans))
@@ -213,8 +217,7 @@ def tan():
             # Using radians setting
             ans = math.tan(ans)
         # Displaying the answer
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+        update_display(str(ans))
     except Exception:
         # Catching possible error
         tkinter.messagebox.showerror("Value Error", "tan error")
@@ -230,8 +233,7 @@ def arcsin():
             if ans > 1 or ans < -1:
                 # In degrees arc sin should give undef when below -1 or above 1
                 ans = 'undef'
-                disp.delete(0, END)
-                disp.insert(0, str(ans))
+                update_display(str(ans))
             else:
                 ans = math.degrees(math.asin(ans))
         else:
@@ -242,8 +244,7 @@ def arcsin():
             else:
                 ans = math.asin(ans)
         # Push to display
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+        update_display(str(ans))
     except Exception:
         # catch exception
         tkinter.messagebox.showerror("Value Error", "arcsin error")
@@ -259,8 +260,7 @@ def arccos():
             if ans > 1 or ans < -1:
                 # In degrees arc cos should give undef when below -1 or above 1
                 ans = 'undef'
-                disp.delete(0, END)
-                disp.insert(0, str(ans))
+                update_display(str(ans))
             else:
                 ans = math.degrees(math.acos(ans))
 
@@ -272,8 +272,7 @@ def arccos():
             else:
                 ans = math.acos(ans)
         # Push to display
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+        update_display(str(ans))
     except Exception:
         # Catch exceptions :S
         tkinter.messagebox.showerror("Value Error", "arccos error")
@@ -290,8 +289,7 @@ def arctan():
             # Radians
             ans = math.atan(ans)
         # Display
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+        update_display(str(ans))
     except Exception:
         # Catch all the naughty
         tkinter.messagebox.showerror("Value Error", "actan error")
@@ -311,13 +309,11 @@ def logarithm():
         # If log10(0) is used it needs to be undef
         if ans == 0:
             ans = 'undef'
-            disp.delete(0, END)
-            disp.insert(0, str(ans))
+            update_display(str(ans))
         else:
             # Using the log function
             ans = math.log10(ans)
-            disp.delete(0, END)
-            disp.insert(0, str(ans))
+            update_display(str(ans))
     except Exception:
         tkinter.messagebox.showerror("Value Error", "except on logarithm")
 
@@ -327,8 +323,7 @@ def factorial():
     try:
         # Take factorial of number on display (non float)
         ans = math.factorial(int(disp.get()))
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+        update_display(str(ans))
     except Exception:
         # User did smth wrong. (Probably used a float as input)
         tkinter.messagebox.showerror("Value Error", "Maybe try doing non float factorial?")
@@ -339,8 +334,7 @@ def absolute():
     try:
         # Take absolute of number on display
         ans = abs(float(disp.get()))
-        disp.delete(0, END)
-        disp.insert(0, str(ans))
+        update_display(str(ans))
     except Exception:
         tkinter.messagebox.showerror("Value Error", "absolute except")
 
@@ -401,16 +395,23 @@ def bclosed():
 
 # Backspace action
 def backspace():
+    # Getting cursor position on screen
     pos = len(disp.get())
+    # Getting the whole function from display
     display = str(disp.get())
+    # If function is empty we replace it with 0
     if display == '':
         disp.insert(0, '0')
+    # If function is a space we replace it with 0 also
     elif display == ' ':
         disp.insert(0, '0')
+    # If function is only 0 we do nothing
     elif display == '0':
         pass
     else:
+        # Otherwise, we delete everything
         disp.delete(0, END)
+        # Insert answer without the last character
         disp.insert(0, display[0:pos - 1])
 
 
@@ -436,13 +437,11 @@ def ln():
         if ans == 0:
             # Stetting 'ans' as undef and displaying
             ans = 'undef'
-            disp.delete(0, END)
-            disp.insert(0, str(ans))
+            update_display(str(ans))
         else:
             # Normal natural log calculation using math library
             ans = math.log(ans)
-            disp.delete(0, END)
-            disp.insert(0, str(ans))
+            update_display(str(ans))
     except Exception:
         # Catching exception just in case
         tkinter.messagebox.showerror("Value Error", "except on ln")
@@ -468,51 +467,63 @@ def equals(*args):
 
         # adding support with bracket multiplication without multiplication sign
         while ")(" in ans:
+            # If closing and opening brackets are next to each other we assume there has to be a multiplication sign
+            # inbetween them
             ans = ans.replace(')(', ')*(')
+        # Staring from 0
         i = 0
         while i <= 9:
             line = str(i) + "("
             line2 = ")" + str(i)
             while line in ans:
+                # If there is a number next to opening bracket & no multiplication sign, we put it there
                 ans = ans.replace(line, str(i) + '*(')
             while line2 in ans:
+                # If there is a number next to closing bracket & no multiplication sign, we put it there
                 ans = ans.replace(line2, ')*' + str(i))
+            # We do it from 0 --> 9
             i = i + 1
 
         # replacing pi
         i = 0
+        # From 0 --> 9
         while i <= 9:
             piy = str(i) + "pi"
             piy2 = "pi" + str(i)
             while piy in ans:
+                # If there is a number next to pi on left side & no multiplication sign, we put it there
                 ans = ans.replace(piy, str(i) + '*' + str(math.pi))
             while piy2 in ans:
+                # If there is a number next to pi on right side & no multiplication sign, we put it there
                 ans = ans.replace(piy2, str(math.pi) + '*' + str(i))
             i = i + 1
         while "pi" in ans:
+            # Replacing pi from string to a constant math.pi
             ans = ans.replace("pi", str(math.pi))
 
         # replacing e
         i = 0
+        # From 0--> 9
         while i <= 9:
             piy = str(i) + "e"
             piy2 = "e" + str(i)
             while piy in ans:
+                # If there is a number next to e on left side & no multiplication sign, we put it there
                 ans = ans.replace(piy, str(i) + '*' + str(math.e))
             while piy2 in ans:
+                # If there is a number next to e on right side & no multiplication sign, we put it there
                 ans = ans.replace(piy2, str(math.e) + '*' + str(i))
             i = i + 1
         while "e" in ans:
+            # Replacing e from string to a constant math.e
             ans = ans.replace("e", str(math.e))
 
-        # result display
-        print(ans + " final")
+        # Evaluate the function after all the replacements have been made
         ans = eval(ans)
-        disp.delete(0, END)
-        disp.insert(0, ans)
+        update_display(str(ans))
     except:
         # Catch error and display message
-        tkinter.messagebox.showerror("Value Error", "EQ went wrong somewhere")
+        tkinter.messagebox.showerror("Value Error", "Maybe you should check the function for mistakes?")
 
 
 # Label
@@ -616,7 +627,7 @@ row5.pack(expand=TRUE, fill=BOTH)
 
 power_button = Button(row5, text="xⁿ", font="Segoe 19", relief=GROOVE, bd=0, command=power, fg="#ffffff", bg="#0f0f0f")
 button_7 = Button(row5, text="7", font="Segoe 19", relief=GROOVE, bd=0, command=clicked_7, fg="#ffffff", bg="#0a0a0a")
-button_8 = Button(row5, text="8", font="Segoe 18", relief=GROOVE, bd=0, command=clicked_7, fg="#ffffff", bg="#0a0a0a")
+button_8 = Button(row5, text="8", font="Segoe 18", relief=GROOVE, bd=0, command=clicked_8, fg="#ffffff", bg="#0a0a0a")
 button_9 = Button(row5, text="9", font="Segoe 19", relief=GROOVE, bd=0, command=clicked_9, fg="#ffffff", bg="#0a0a0a")
 
 multiply_button = Button(row5, text="×", font="Segoe 19", relief=GROOVE, bd=0, command=multiply, fg="#ffffff",
