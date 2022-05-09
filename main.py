@@ -145,6 +145,8 @@ def prime():
 def scientific():
     try:
         # scientific notation converter
+        # .2 stands for "print a float with 2 decimal places", so %.4 would print 33.3333
+        # we attach E at the end
         ans = "{:.2E}".format(float(disp.get()))
         update_display(ans)
     except Exception:
@@ -162,7 +164,7 @@ def percentage():
     try:
         # percentage converter
         ans = float(disp.get())
-        # %.2 stands for "print a float with 2 decimal places", so %.4f would print 33.3333
+        # .2 stands for "print a float with 2 decimal places", so %.4f would print 33.3333
         ans = "{:.2%}".format(ans)
         update_display(str(ans))
     except Exception:
@@ -377,13 +379,21 @@ def dot():
 # pi action
 def pi():
     pos = len(disp.get())
-    disp.insert(pos, 'pi')
+    if str(disp.get()) == '0':
+        disp.delete(0, END)
+        disp.insert(pos, 'pi')
+    else:
+        disp.insert(pos, 'pi')
 
 
 # e- Mathematical constant
 def e():
     pos = len(disp.get())
-    disp.insert(pos, 'e')
+    if str(disp.get()) == '0':
+        disp.delete(0, END)
+        disp.insert(pos, 'e')
+    else:
+        disp.insert(pos, 'e')
 
 
 # Opened bracket
