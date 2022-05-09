@@ -306,7 +306,7 @@ def arctan():
 def power():
     pos = len(disp.get())
     # Kinda user friendly
-    disp.insert(pos, '**')
+    disp.insert(pos, '^')
 
 
 # Logarithm action
@@ -350,7 +350,7 @@ def absolute():
 def p_10x():
     try:
         pos = len(disp.get())
-        disp.insert(pos, '*(10**')
+        disp.insert(pos, '*(10^')
     except Exception:
         # Catching exception
         tkinter.messagebox.showerror("Value Error", "p_10x Error")
@@ -364,7 +364,7 @@ def root_c():
         # x - value to root
         # n - power of root
         # don't forget to close the bracket after
-        disp.insert(pos, '(x**(1/n)')
+        disp.insert(pos, '(x^(1/n)')
     except Exception:
         # Catching exception
         tkinter.messagebox.showerror("Value Error", "Root function error")
@@ -471,14 +471,17 @@ def modulo():
 def equals(*args):
     try:
         ans = disp.get()
-
         # If someone put in a coma instead of a dot, replace the comma w dot & slap them
         if ',' in ans:
             ans = ans.replace(',', '.')
 
         # no nth root stated, using default (2) square root
-        while '**(1/n)' in ans:
-            ans = ans.replace('**(1/n)', '**(1/2)')  # TODO do not allow negative roots
+        while '^(1/n)' in ans:
+            ans = ans.replace('^(1/n)', '^(1/2)')  # TODO do not allow negative roots
+
+        # Replace the '^' symbol with power
+        while '^' in ans:
+            ans = ans.replace('^', '**')
 
         # adding support with bracket multiplication without multiplication sign
         while ')(' in ans:
@@ -540,7 +543,10 @@ def equals(*args):
             ans = ans.replace('e', str(math.e))
 
         # Evaluate the function after all the replacements have been made
-        ans = eval(ans)
+        # !! Compromise !!
+        # To avoid floating point caused offset we are rounding all the answers to 10 decimal places
+        # Example without floating point offset fix (.1*.1 is 0.010000000000000002 not 0.01)
+        ans = round(eval(ans), 10)
         update_display(str(ans))
     except:
         # Catch error and display message
@@ -562,7 +568,6 @@ disp.bind("<Key-7>", key_event)
 disp.bind("<Key-8>", key_event)
 disp.bind("<Key-9>", key_event)
 disp.bind("<Key-0>", key_event)
-disp.bind("<Key-.>", key_event)
 disp.bind("<Key-->", key_event)
 disp.insert(0, '0')
 disp.focus_set()
