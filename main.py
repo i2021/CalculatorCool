@@ -473,23 +473,23 @@ def equals(*args):
         ans = disp.get()
 
         # If someone put in a coma instead of a dot, replace the comma w dot & slap them
-        if "," in ans:
+        if ',' in ans:
             ans = ans.replace(',', '.')
 
         # no nth root stated, using default (2) square root
-        while "**(1/n)" in ans:
+        while '**(1/n)' in ans:
             ans = ans.replace('**(1/n)', '**(1/2)')  # TODO do not allow negative roots
 
         # adding support with bracket multiplication without multiplication sign
-        while ")(" in ans:
+        while ')(' in ans:
             # If closing and opening brackets are next to each other we assume there has to be a multiplication sign
             # inbetween them
             ans = ans.replace(')(', ')*(')
         # Staring from 0
         i = 0
         while i <= 9:
-            line = str(i) + "("
-            line2 = ")" + str(i)
+            line = str(i) + '('
+            line2 = ')' + str(i)
             while line in ans:
                 # If there is a number next to opening bracket & no multiplication sign, we put it there
                 ans = ans.replace(line, str(i) + '*(')
@@ -503,8 +503,8 @@ def equals(*args):
         i = 0
         # From 0 --> 9
         while i <= 9:
-            piy = str(i) + "pi"
-            piy2 = "pi" + str(i)
+            piy = str(i) + 'pi'
+            piy2 = 'pi' + str(i)
             while piy in ans:
                 # If there is a number next to pi on left side & no multiplication sign, we put it there
                 ans = ans.replace(piy, str(i) + '*' + str(math.pi))
@@ -512,16 +512,19 @@ def equals(*args):
                 # If there is a number next to pi on right side & no multiplication sign, we put it there
                 ans = ans.replace(piy2, str(math.pi) + '*' + str(i))
             i = i + 1
-        while "pi" in ans:
+        while 'pipi' in ans:
+            # We need to support pipi and other iterations because I deiced so
+            ans = ans.replace('pipi', 'pi*pi')
+        while 'pi' in ans:
             # Replacing pi from string to a constant math.pi
-            ans = ans.replace("pi", str(math.pi))
+            ans = ans.replace('pi', str(math.pi))
 
         # replacing e
         i = 0
         # From 0--> 9
         while i <= 9:
-            piy = str(i) + "e"
-            piy2 = "e" + str(i)
+            piy = str(i) + 'e'
+            piy2 = 'e' + str(i)
             while piy in ans:
                 # If there is a number next to e on left side & no multiplication sign, we put it there
                 ans = ans.replace(piy, str(i) + '*' + str(math.e))
@@ -529,9 +532,12 @@ def equals(*args):
                 # If there is a number next to e on right side & no multiplication sign, we put it there
                 ans = ans.replace(piy2, str(math.e) + '*' + str(i))
             i = i + 1
-        while "e" in ans:
+        while 'ee' in ans:
+            # We need to support ee and other iterations because I deiced so
+            ans = ans.replace('ee', 'e*e')
+        while 'e' in ans:
             # Replacing e from string to a constant math.e
-            ans = ans.replace("e", str(math.e))
+            ans = ans.replace('e', str(math.e))
 
         # Evaluate the function after all the replacements have been made
         ans = eval(ans)
