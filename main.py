@@ -15,71 +15,61 @@ switch = None
 
 
 def clicked_1():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '1')
 
 
 def clicked_2():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '2')
 
 
 def clicked_3():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '3')
 
 
 def clicked_4():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '4')
 
 
 def clicked_5():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '5')
 
 
 def clicked_6():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '6')
 
 
 def clicked_7():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '7')
 
 
 def clicked_8():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '8')
 
 
 def clicked_9():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '9')
 
 
 def clicked_0():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '0')
 
@@ -94,9 +84,18 @@ def plus():
     disp.insert(pos, '+')
 
 
+# Nothing function
+def nothing(*args):
+    return
+
+# Dot function
+def dot():
+    pos = len(disp.get())
+    disp.insert(pos, '.')
+
+
 def minus():
-    if disp.get() == '0':
-        disp.delete(0, END)
+    key_event()
     pos = len(disp.get())
     disp.insert(pos, '-')
 
@@ -367,12 +366,6 @@ def root_c():
         tkinter.messagebox.showerror("Value Error", "Root function error")
 
 
-# dot action
-def dot():
-    pos = len(disp.get())
-    disp.insert(pos, '.')
-
-
 # pi action
 def pi():
     pos = len(disp.get())
@@ -566,6 +559,7 @@ disp.bind("<Key-8>", key_event)
 disp.bind("<Key-9>", key_event)
 disp.bind("<Key-0>", key_event)
 disp.bind("<Key-->", key_event)
+disp.bind("<Key-.>", nothing)
 disp.insert(0, '0')
 disp.focus_set()
 disp.pack(expand=TRUE, fill=BOTH)
