@@ -213,10 +213,10 @@ def tan():
                 if abs(ans) == 0:
                     # tan(0) = 0
                     update_display(str(abs(ans)))
+                    return
                 else:
                     # Treating undef
                     ans = 'undef'
-                    update_display(str(ans))
             else:
                 # Calculating tan in degrees for non zeros or % 90s
                 ans = math.tan(math.radians(ans))
@@ -240,7 +240,6 @@ def arcsin():
             if ans > 1 or ans < -1:
                 # In degrees arc sin should give undef when below -1 or above 1
                 ans = 'undef'
-                update_display(str(ans))
             else:
                 ans = math.degrees(math.asin(ans))
         else:
@@ -267,7 +266,6 @@ def arccos():
             if ans > 1 or ans < -1:
                 # In degrees arc cos should give undef when below -1 or above 1
                 ans = 'undef'
-                update_display(str(ans))
             else:
                 ans = math.degrees(math.acos(ans))
 
@@ -316,11 +314,10 @@ def logarithm():
         # If log10(0) is used it needs to be undef
         if ans == 0:
             ans = 'undef'
-            update_display(str(ans))
         else:
             # Using the log function
             ans = math.log10(ans)
-            update_display(str(ans))
+        update_display(str(ans))
     except Exception:
         tkinter.messagebox.showerror("Value Error", "Logarithm Error")
 
@@ -450,13 +447,13 @@ def ln():
         ans = float(disp.get())
         # If ln(0) is used it needs to be undef
         if ans == 0:
-            # Stetting 'ans' as undef and displaying
+            # Stetting 'ans' as undef
             ans = 'undef'
-            update_display(str(ans))
         else:
             # Normal natural log calculation using math library
             ans = math.log(ans)
-            update_display(str(ans))
+        # Displaying undef or answer
+        update_display(str(ans))
     except Exception:
         # Catching exception just in case
         tkinter.messagebox.showerror("Value Error", "Natural logarithm Error")
