@@ -88,6 +88,7 @@ def plus():
 def nothing(*args):
     return
 
+
 # Dot function
 def dot():
     pos = len(disp.get())
@@ -193,7 +194,7 @@ def cos():
             ans = 1 - math.sin(math.radians(ans))
         else:
             # Using radians setting
-            ans = math.cos(ans)
+            ans = round(math.cos(ans), 5)
         # Displaying answer
         update_display(str(ans))
     except Exception:
@@ -274,7 +275,7 @@ def arccos():
                 # In radians arc cos should give non-real output when below -1 or above 1
                 tkinter.messagebox.showwarning("Info", "Non-real result")
             else:
-                ans = math.acos(ans)
+                ans = round(math.acos(ans), 5)
         # Push to display
         update_display(str(ans))
     except Exception:
@@ -536,7 +537,7 @@ def equals(*args):
         # !! Compromise !!
         # To avoid floating point caused offset we are rounding all the answers to 10 decimal places
         # Example without floating point offset fix (.1*.1 is 0.010000000000000002 not 0.01)
-        ans = round(eval(ans), 10)
+        ans = eval(ans)
         update_display(str(ans))
     except:
         # Catch error and display message
