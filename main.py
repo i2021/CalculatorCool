@@ -458,87 +458,88 @@ def modulo():
     disp.insert(pos, '%')
 
 
+def replacement(ans):
+    # If someone put in a coma instead of a dot, replace the comma w dot & slap them
+    if ',' in ans:
+        ans = ans.replace(',', '.')
+
+    # no nth root stated, using default (2) square root
+    while '^(1/n)' in ans:
+        ans = ans.replace('^(1/n)', '^(1/2)')
+
+    # Replace the '^' symbol with power
+    while '^' in ans:
+        ans = ans.replace('^', '**')
+
+    # adding support with bracket multiplication without multiplication sign
+    while ')(' in ans:
+        # If closing and opening brackets are next to each other we assume there has to be a multiplication sign
+        # inbetween them
+        ans = ans.replace(')(', ')*(')
+    # replacing pi
+    i = 0
+    # From 0 --> 9
+    while i <= 9:
+        piy = str(i) + 'pi'
+        piy2 = 'pi' + str(i)
+        # Adding multiplication sign
+        line = str(i) + '('
+        line2 = ')' + str(i)
+        while piy in ans:
+            # If there is a number next to pi on left side & no multiplication sign, we put it there
+            ans = ans.replace(piy, str(i) + '*' + str(math.pi))
+        while piy2 in ans:
+            # If there is a number next to pi on right side & no multiplication sign, we put it there
+            ans = ans.replace(piy2, str(math.pi) + '*' + str(i))
+        while line in ans:
+            # If there is a number next to opening bracket & no multiplication sign, we put it there
+            ans = ans.replace(line, str(i) + '*(')
+        while line2 in ans:
+            # If there is a number next to closing bracket & no multiplication sign, we put it there
+            ans = ans.replace(line2, ')*' + str(i))
+        i = i + 1
+    while 'pipi' in ans:
+        # We need to support pipi and other iterations because I deiced so
+        ans = ans.replace('pipi', 'pi*pi')
+    while 'pi' in ans:
+        # Replacing pi from string to a constant math.pi
+        ans = ans.replace('pi', str(math.pi))
+
+    # replacing e
+    i = 0
+    # From 0--> 9
+    while i <= 9:
+        piy = str(i) + 'e'
+        piy2 = 'e' + str(i)
+        while piy in ans:
+            # If there is a number next to e on left side & no multiplication sign, we put it there
+            ans = ans.replace(piy, str(i) + '*' + str(math.e))
+        while piy2 in ans:
+            # If there is a number next to e on right side & no multiplication sign, we put it there
+            ans = ans.replace(piy2, str(math.e) + '*' + str(i))
+        i = i + 1
+    while 'ee' in ans:
+        # We need to support ee and other iterations because I deiced so
+        ans = ans.replace('ee', 'e*e')
+    while 'e' in ans:
+        # Replacing e from string to a constant math.e
+        ans = ans.replace('e', str(math.e))
+    return ans
+
+
 # Equals action
 def equals(*args):
     try:
-        ans = disp.get()
-        # If someone put in a coma instead of a dot, replace the comma w dot & slap them
-        if ',' in ans:
-            ans = ans.replace(',', '.')
-
-        # no nth root stated, using default (2) square root
-        while '^(1/n)' in ans:
-            ans = ans.replace('^(1/n)', '^(1/2)')  # TODO do not allow negative roots
-
-        # Replace the '^' symbol with power
-        while '^' in ans:
-            ans = ans.replace('^', '**')
-
-        # adding support with bracket multiplication without multiplication sign
-        while ')(' in ans:
-            # If closing and opening brackets are next to each other we assume there has to be a multiplication sign
-            # inbetween them
-            ans = ans.replace(')(', ')*(')
-        # Staring from 0
-        i = 0
-        while i <= 9:
-            line = str(i) + '('
-            line2 = ')' + str(i)
-            while line in ans:
-                # If there is a number next to opening bracket & no multiplication sign, we put it there
-                ans = ans.replace(line, str(i) + '*(')
-            while line2 in ans:
-                # If there is a number next to closing bracket & no multiplication sign, we put it there
-                ans = ans.replace(line2, ')*' + str(i))
-            # We do it from 0 --> 9
-            i = i + 1
-
-        # replacing pi
-        i = 0
-        # From 0 --> 9
-        while i <= 9:
-            piy = str(i) + 'pi'
-            piy2 = 'pi' + str(i)
-            while piy in ans:
-                # If there is a number next to pi on left side & no multiplication sign, we put it there
-                ans = ans.replace(piy, str(i) + '*' + str(math.pi))
-            while piy2 in ans:
-                # If there is a number next to pi on right side & no multiplication sign, we put it there
-                ans = ans.replace(piy2, str(math.pi) + '*' + str(i))
-            i = i + 1
-        while 'pipi' in ans:
-            # We need to support pipi and other iterations because I deiced so
-            ans = ans.replace('pipi', 'pi*pi')
-        while 'pi' in ans:
-            # Replacing pi from string to a constant math.pi
-            ans = ans.replace('pi', str(math.pi))
-
-        # replacing e
-        i = 0
-        # From 0--> 9
-        while i <= 9:
-            piy = str(i) + 'e'
-            piy2 = 'e' + str(i)
-            while piy in ans:
-                # If there is a number next to e on left side & no multiplication sign, we put it there
-                ans = ans.replace(piy, str(i) + '*' + str(math.e))
-            while piy2 in ans:
-                # If there is a number next to e on right side & no multiplication sign, we put it there
-                ans = ans.replace(piy2, str(math.e) + '*' + str(i))
-            i = i + 1
-        while 'ee' in ans:
-            # We need to support ee and other iterations because I deiced so
-            ans = ans.replace('ee', 'e*e')
-        while 'e' in ans:
-            # Replacing e from string to a constant math.e
-            ans = ans.replace('e', str(math.e))
+        # Replacement function
+        ans = replacement(disp.get())
 
         # Evaluate the function after all the replacements have been made
         # !! Compromise !!
         # To avoid floating point caused offset we are rounding all the answers to 10 decimal places
         # Example without floating point offset fix (.1*.1 is 0.010000000000000002 not 0.01)
-        ans = eval(ans)
+        ans = round(eval(ans), 5)
         update_display(str(ans))
+        return float(ans)
     except:
         # Catch error and display message
         tkinter.messagebox.showerror("Value Error", "Maybe you should check the function for mistakes?")
