@@ -5,8 +5,6 @@ from tkinter import *
 root = Tk()
 # Calculator dimensions
 root.geometry("300x500+300+300")
-# Attaching icon because why not :D
-root.iconbitmap(True, "icon.ico")
 # Gotta come up with a better name bruv
 root.title("Scientific Calculator")
 
@@ -361,6 +359,8 @@ def root_c():
         # x - value to root
         # n - power of root
         # don't forget to close the bracket after
+        if str(disp.get()) == '0':
+            disp.delete(0, END)
         disp.insert(pos, '(x^(1/n)')
     except Exception:
         # Catching exception
