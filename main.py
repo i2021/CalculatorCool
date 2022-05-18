@@ -476,7 +476,6 @@ def replacement(ans):
         # If closing and opening brackets are next to each other we assume there has to be a multiplication sign
         # inbetween them
         ans = ans.replace(')(', ')*(')
-    # replacing pi
     i = 0
     # From 0 --> 9
     while i <= 9:
@@ -485,6 +484,9 @@ def replacement(ans):
         # Adding multiplication sign
         line = str(i) + '('
         line2 = ')' + str(i)
+        # Replacing e
+        piy = str(i) + 'e'
+        piy2 = 'e' + str(i)
         while piy in ans:
             # If there is a number next to pi on left side & no multiplication sign, we put it there
             ans = ans.replace(piy, str(i) + '*' + str(math.pi))
@@ -497,20 +499,6 @@ def replacement(ans):
         while line2 in ans:
             # If there is a number next to closing bracket & no multiplication sign, we put it there
             ans = ans.replace(line2, ')*' + str(i))
-        i = i + 1
-    while 'pipi' in ans:
-        # We need to support pipi and other iterations because I deiced so
-        ans = ans.replace('pipi', 'pi*pi')
-    while 'pi' in ans:
-        # Replacing pi from string to a constant math.pi
-        ans = ans.replace('pi', str(math.pi))
-
-    # replacing e
-    i = 0
-    # From 0--> 9
-    while i <= 9:
-        piy = str(i) + 'e'
-        piy2 = 'e' + str(i)
         while piy in ans:
             # If there is a number next to e on left side & no multiplication sign, we put it there
             ans = ans.replace(piy, str(i) + '*' + str(math.e))
@@ -518,6 +506,12 @@ def replacement(ans):
             # If there is a number next to e on right side & no multiplication sign, we put it there
             ans = ans.replace(piy2, str(math.e) + '*' + str(i))
         i = i + 1
+    while 'pipi' in ans:
+        # We need to support pipi and other iterations because I deiced so
+        ans = ans.replace('pipi', 'pi*pi')
+    while 'pi' in ans:
+        # Replacing pi from string to a constant math.pi
+        ans = ans.replace('pi', str(math.pi))
     while 'ee' in ans:
         # We need to support ee and other iterations because I deiced so
         ans = ans.replace('ee', 'e*e')
